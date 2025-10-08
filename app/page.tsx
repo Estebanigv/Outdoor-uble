@@ -142,7 +142,7 @@ export default function Home() {
       <SideNavigation />
 
       {/* Fixed Background Images */}
-      <div className="fixed top-0 left-0 right-0 h-screen -z-10">
+      <div className="fixed top-0 left-0 right-0 h-screen -z-10 overflow-hidden">
         {/* Image 1 - Hero Principal */}
         <img
           src="/images/freepik__candid-photography-with-natural-textures-and-highl__34529.webp"
@@ -150,7 +150,7 @@ export default function Home() {
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
             opacity: currentImage === 1 ? 1 : 0,
-            objectPosition: 'center center'
+            objectPosition: 'center 40%'
           }}
         />
 
@@ -161,7 +161,7 @@ export default function Home() {
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
             opacity: currentImage === 2 ? 1 : 0,
-            objectPosition: 'center center'
+            objectPosition: 'center 40%'
           }}
         />
 
@@ -172,19 +172,19 @@ export default function Home() {
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
             opacity: currentImage === 3 ? 1 : 0,
-            objectPosition: 'center center'
+            objectPosition: 'center 40%'
           }}
         />
 
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-grafito/30 via-transparent to-grafito/40" />
+        {/* Overlay gradient - más oscuro en mobile para mejor legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-grafito/40 via-grafito/20 to-grafito/50 md:from-grafito/30 md:via-transparent md:to-grafito/40" />
       </div>
 
       {/* Navigation */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out ${scrolled ? 'bg-black/70 backdrop-blur-xl shadow-2xl' : 'bg-transparent py-6'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out ${scrolled ? 'bg-black/70 backdrop-blur-xl shadow-2xl' : 'bg-transparent py-3 sm:py-4 md:py-6'}`}
       >
-        <div className={`transition-all duration-1000 ease-out ${scrolled ? 'w-full px-12 py-4' : 'container mx-auto px-6'}`}>
+        <div className={`transition-all duration-1000 ease-out ${scrolled ? 'w-full px-4 sm:px-8 md:px-12 py-3 sm:py-4' : 'container mx-auto px-4 sm:px-6'}`}>
           {/* Gradient accent line on top when scrolled */}
           <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-rio to-transparent transition-opacity duration-1000 ${scrolled ? 'opacity-60' : 'opacity-0'}`}></div>
 
@@ -267,41 +267,39 @@ export default function Home() {
         {/* Hero - Dynamic Scroll Images */}
         <section id="hero" className="relative min-h-screen">
           {/* Hero Content */}
-          <div className="relative min-h-screen flex items-start justify-start md:justify-center pt-24 sm:pt-28 md:pt-36 lg:pt-44">
+          <div className="relative min-h-screen flex items-center md:items-start md:justify-center pt-20 sm:pt-24 md:pt-36 lg:pt-44">
             <div className="relative z-10 container mx-auto px-4 sm:px-6">
               <div className="max-w-2xl">
-                <div className="mb-6 sm:mb-8 md:mb-10 inline-block animate-in fade-in duration-700">
-                  <span className="bg-rio/50 backdrop-blur-md text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
+                <div className="mb-4 sm:mb-6 md:mb-8 inline-block animate-in fade-in duration-700">
+                  <span className="bg-rio/60 backdrop-blur-md text-white px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full text-[10px] sm:text-xs md:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
                     Reserva de la Biósfera UNESCO
                   </span>
                 </div>
 
-                <h1 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-4 sm:mb-5 md:mb-6 leading-[1.1] animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
+                <h1 className="font-montserrat font-black text-[2rem] leading-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-3 sm:mb-4 md:mb-5 lg:mb-6 sm:leading-[1.1] animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
                   Vive la Aventura<br />
                   del Río Ñuble
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-7 md:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white mb-5 sm:mb-6 md:mb-7 lg:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
                   Rafting profesional con guías certificados en San Fabián de Alico.
                   Tu próxima aventura te espera.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-in fade-in duration-700 delay-500">
+                <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:gap-4 animate-in fade-in duration-700 delay-500">
                   <Button
                     asChild
-                    size="lg"
-                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 lg:py-7 text-sm sm:text-base md:text-lg rounded-full shadow-[0_12px_35px_rgba(10,132,174,0.5)] hover:shadow-[0_16px_45px_rgba(10,132,174,0.7)] hover:scale-[1.03] transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
+                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg rounded-full shadow-[0_8px_25px_rgba(10,132,174,0.4)] hover:shadow-[0_12px_35px_rgba(10,132,174,0.6)] hover:scale-[1.03] active:scale-95 transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
                   >
-                    <a href="#experiencias" className="flex items-center gap-2 sm:gap-3 justify-center">
+                    <a href="#experiencias" className="flex items-center gap-2 justify-center">
                       Ver experiencias
                       <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
                     </a>
                   </Button>
                   <Button
                     asChild
-                    size="lg"
                     variant="outline"
-                    className="group relative overflow-hidden border-3 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 lg:py-7 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-black shadow-[0_12px_35px_rgba(255,255,255,0.3)] hover:shadow-[0_16px_45px_rgba(255,255,255,0.5)] hover:scale-[1.03]"
+                    className="group relative overflow-hidden border-2 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-bold shadow-[0_8px_25px_rgba(255,255,255,0.2)] hover:shadow-[0_12px_35px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-95"
                   >
                     <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center relative z-10">
                       Reservar ahora
@@ -311,8 +309,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Scroll Indicator */}
-            <a href="#experiencias" className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-all duration-300 group">
+            {/* Scroll Indicator - Hidden on mobile */}
+            <a href="#experiencias" className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-all duration-300 group">
               <div className="flex flex-col items-center gap-2">
                 <div className="flex flex-col items-center">
                   <span className="text-white text-sm font-montserrat font-semibold uppercase tracking-wide drop-shadow-2xl">Descubre</span>
