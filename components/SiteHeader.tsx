@@ -53,22 +53,22 @@ export default function SiteHeader({ phone }: SiteHeaderProps) {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex h-20 md:h-24 items-center justify-between">
-          <a href="/" className="flex items-center gap-4 md:gap-5 group">
+        <div className="flex h-20 md:h-24 lg:h-24 items-center justify-between">
+          <a href="/" className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-5 group">
             {/* Isotipo Solo */}
             <div className="relative flex-shrink-0">
               <img
                 src="/images/logo.webp"
                 alt="Outdoor Ñuble Logo"
-                className="h-16 md:h-20 lg:h-24 w-auto transition-transform group-hover:scale-105 drop-shadow-lg"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto transition-transform group-hover:scale-105 drop-shadow-lg"
               />
             </div>
             {/* Texto Vertical */}
-            <div className="flex flex-col leading-none">
-              <span className="font-display text-2xl md:text-3xl lg:text-4xl font-black text-grafito tracking-tight group-hover:text-rio transition-colors">
+            <div className="flex flex-col justify-center -space-y-1">
+              <span className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black text-grafito tracking-tight leading-none group-hover:text-rio transition-colors">
                 Outdoor
               </span>
-              <span className="font-display text-2xl md:text-3xl lg:text-4xl font-black text-grafito tracking-tight group-hover:text-rio transition-colors">
+              <span className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black text-grafito tracking-tight leading-none group-hover:text-rio transition-colors">
                 Ñuble
               </span>
             </div>

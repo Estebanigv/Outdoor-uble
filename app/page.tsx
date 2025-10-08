@@ -267,39 +267,39 @@ export default function Home() {
         {/* Hero - Dynamic Scroll Images */}
         <section id="hero" className="relative min-h-screen">
           {/* Hero Content */}
-          <div className="relative min-h-screen flex items-center md:items-start md:justify-center pt-20 sm:pt-24 md:pt-36 lg:pt-44">
-            <div className="relative z-10 container mx-auto px-4 sm:px-6">
-              <div className="max-w-2xl">
-                <div className="mb-4 sm:mb-6 md:mb-8 inline-block animate-in fade-in duration-700">
-                  <span className="bg-rio/60 backdrop-blur-md text-white px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full text-[10px] sm:text-xs md:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
+          <div className="relative min-h-screen flex items-center md:items-start md:justify-center pt-24 sm:pt-28 md:pt-36 lg:pt-44 pb-12">
+            <div className="relative z-10 container mx-auto px-6 sm:px-8">
+              <div className="max-w-3xl">
+                <div className="mb-6 sm:mb-7 md:mb-8 inline-block animate-in fade-in duration-700">
+                  <span className="bg-rio/60 backdrop-blur-md text-white px-4 sm:px-5 md:px-5 py-2 sm:py-2.5 md:py-2.5 rounded-full text-xs sm:text-sm md:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
                     Reserva de la Biósfera UNESCO
                   </span>
                 </div>
 
-                <h1 className="font-montserrat font-black text-[2rem] leading-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-3 sm:mb-4 md:mb-5 lg:mb-6 sm:leading-[1.1] animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
+                <h1 className="font-montserrat font-black text-[2.5rem] leading-[1.15] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-5 sm:mb-6 md:mb-5 lg:mb-6 animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
                   Vive la Aventura<br />
                   del Río Ñuble
                 </h1>
 
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white mb-5 sm:mb-6 md:mb-7 lg:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
+                <p className="text-base sm:text-lg md:text-lg lg:text-xl text-white mb-7 sm:mb-8 md:mb-7 lg:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
                   Rafting profesional con guías certificados en San Fabián de Alico.
                   Tu próxima aventura te espera.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:gap-4 animate-in fade-in duration-700 delay-500">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-4 animate-in fade-in duration-700 delay-500">
                   <Button
                     asChild
-                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg rounded-full shadow-[0_8px_25px_rgba(10,132,174,0.4)] hover:shadow-[0_12px_35px_rgba(10,132,174,0.6)] hover:scale-[1.03] active:scale-95 transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
+                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-8 sm:px-8 md:px-8 lg:px-10 py-4 sm:py-5 md:py-5 lg:py-6 text-base sm:text-lg md:text-lg rounded-full shadow-[0_8px_25px_rgba(10,132,174,0.4)] hover:shadow-[0_12px_35px_rgba(10,132,174,0.6)] hover:scale-[1.03] active:scale-95 transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
                   >
                     <a href="#experiencias" className="flex items-center gap-2 justify-center">
                       Ver experiencias
-                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
+                      <ChevronDown className="w-5 h-5 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
                     </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
-                    className="group relative overflow-hidden border-2 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-bold shadow-[0_8px_25px_rgba(255,255,255,0.2)] hover:shadow-[0_12px_35px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-95"
+                    className="group relative overflow-hidden border-2 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-8 sm:px-8 md:px-8 lg:px-10 py-4 sm:py-5 md:py-5 lg:py-6 text-base sm:text-lg md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-bold shadow-[0_8px_25px_rgba(255,255,255,0.2)] hover:shadow-[0_12px_35px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-95"
                   >
                     <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center relative z-10">
                       Reservar ahora
@@ -323,24 +323,24 @@ export default function Home() {
         </section>
 
         {/* Stats Bar */}
-        <section className="relative py-8 sm:py-10 md:py-12">
-          <div className="relative container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto">
-              <div className="text-center text-white animate-in fade-in duration-700 delay-100 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
+        <section className="relative py-10 sm:py-12 md:py-12">
+          <div className="relative container mx-auto px-6 sm:px-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-100 bg-white/20 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={20} suffix="+" duration={2000} />
-                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Años de Experiencia</div>
+                <div className="font-montserrat text-[11px] sm:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg leading-tight">Años de Experiencia</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-200 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-200 bg-white/20 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={100} suffix="%" duration={2000} />
-                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Guías Certificados</div>
+                <div className="font-montserrat text-[11px] sm:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg leading-tight">Guías Certificados</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-300 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-300 bg-white/20 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={12} suffix="km" duration={2000} />
-                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">De Río Navegable</div>
+                <div className="font-montserrat text-[11px] sm:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg leading-tight">De Río Navegable</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-500 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-500 bg-white/20 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={4.9} suffix="★" duration={2000} decimals={1} />
-                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Valoración</div>
+                <div className="font-montserrat text-[11px] sm:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg leading-tight">Valoración</div>
               </div>
             </div>
           </div>
@@ -348,9 +348,9 @@ export default function Home() {
 
         {/* Experiencias - Visual Cards */}
         <section ref={experienciasRef} id="experiencias" className="relative py-16 sm:py-20 md:py-24 lg:py-32">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="text-center mb-12 sm:mb-16 md:mb-20 max-w-4xl mx-auto">
-              <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-3 sm:mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+          <div className="container mx-auto px-6 sm:px-6">
+            <div className="text-center mb-14 sm:mb-16 md:mb-20 max-w-4xl mx-auto">
+              <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Elige tu Aventura
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
@@ -358,7 +358,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
               {/* Sección Ñuble Bajo */}
               <div
                 className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-rio/30 transition-all duration-500 border-2 border-rio/40"
@@ -437,15 +437,15 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="border-t-2 border-grafito/10 pt-4 flex items-center justify-between">
-                    <div>
+                  <div className="border-t-2 border-grafito/10 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-center sm:text-left">
                       <div className="text-sm text-grafito/60 mb-1 font-medium">Desde</div>
-                      <div className="font-montserrat font-black text-3xl text-grafito">$25.000</div>
+                      <div className="font-montserrat font-black text-3xl sm:text-3xl text-grafito">$25.000</div>
                     </div>
                     <Button
                       asChild
                       size="lg"
-                      className="bg-rio hover:bg-rio/90 text-white rounded-full px-6 py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                      className="bg-rio hover:bg-rio/90 text-white rounded-full px-8 py-4 sm:px-6 sm:py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto text-base"
                     >
                       <a href={getWhatsAppLink("+56932344214", "Hola! Me interesa la Sección Ñuble Bajo")} target="_blank" rel="noopener noreferrer">
                         Reservar
@@ -533,15 +533,15 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="border-t-2 border-grafito/10 pt-4 flex items-center justify-between">
-                    <div>
+                  <div className="border-t-2 border-grafito/10 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-center sm:text-left">
                       <div className="text-sm text-grafito/60 mb-1 font-medium">Desde</div>
-                      <div className="font-montserrat font-black text-3xl text-grafito">$30.000</div>
+                      <div className="font-montserrat font-black text-3xl sm:text-3xl text-grafito">$30.000</div>
                     </div>
                     <Button
                       asChild
                       size="lg"
-                      className="bg-bosque hover:bg-bosque/90 text-white rounded-full px-6 py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                      className="bg-bosque hover:bg-bosque/90 text-white rounded-full px-8 py-4 sm:px-6 sm:py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto text-base"
                     >
                       <a href={getWhatsAppLink("+56932344214", "Hola! Me interesa la Sección Ñuble Bajo Plus")} target="_blank" rel="noopener noreferrer">
                         Reservar
@@ -629,15 +629,15 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="border-t-2 border-grafito/10 pt-4 flex items-center justify-between">
-                    <div>
+                  <div className="border-t-2 border-grafito/10 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-center sm:text-left">
                       <div className="text-sm text-grafito/60 mb-1 font-medium">Desde</div>
-                      <div className="font-montserrat font-black text-3xl text-grafito">$30.000</div>
+                      <div className="font-montserrat font-black text-3xl sm:text-3xl text-grafito">$30.000</div>
                     </div>
                     <Button
                       asChild
                       size="lg"
-                      className="bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white rounded-full px-6 py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                      className="bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white rounded-full px-8 py-4 sm:px-6 sm:py-5 font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto text-base"
                     >
                       <a href={getWhatsAppLink("+56932344214", "Hola! Me interesa la Sección Ñuble Alto")} target="_blank" rel="noopener noreferrer">
                         Reservar
