@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import WhatsAppFloatingCTA from "@/components/WhatsAppFloatingCTA";
 import SideNavigation from "@/components/SideNavigation";
 import { getWhatsAppLink, getDefaultRaftingMessage } from "@/lib/getWhatsAppLink";
-import { Clock, Users, MapPin, Star, Shield, Award, Heart, ChevronDown, Check } from "lucide-react";
+import { Clock, Users, MapPin, Star, Shield, Award, Heart, ChevronDown, Check, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 function AnimatedCounter({ end, duration = 2000, suffix = "", prefix = "", decimals = 0 }: { end: number; duration?: number; suffix?: string; prefix?: string; decimals?: number }) {
@@ -49,7 +49,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = "", prefix = "", decim
   }, [isVisible, end, duration, decimals]);
 
   return (
-    <div ref={counterRef} className="font-montserrat font-bold text-4xl md:text-5xl mb-2 drop-shadow-lg">
+    <div ref={counterRef} className="font-montserrat font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-1 sm:mb-2 drop-shadow-lg">
       {prefix}{count}{suffix}
     </div>
   );
@@ -59,6 +59,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [currentImage, setCurrentImage] = useState(1);
   const [hoveredExperience, setHoveredExperience] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const experienciasRef = useRef<HTMLElement>(null);
   const nosotrosRef = useRef<HTMLElement>(null);
 
@@ -188,18 +189,19 @@ export default function Home() {
           <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-rio to-transparent transition-opacity duration-1000 ${scrolled ? 'opacity-60' : 'opacity-0'}`}></div>
 
           <div className="flex items-center justify-between transition-all duration-1000 ease-out">
-            <a href="#" className="flex items-center gap-3 transition-all duration-1000 ease-out">
+            <a href="#" className="flex items-center gap-2 sm:gap-3 transition-all duration-1000 ease-out">
               <img
                 src="/images/isotipo.svg"
                 alt="Outdoor Ñuble"
-                className={`w-auto transition-all duration-1000 ease-out ${scrolled ? 'h-11' : 'h-20 md:h-24'}`}
+                className={`w-auto transition-all duration-1000 ease-out ${scrolled ? 'h-9 sm:h-11' : 'h-14 sm:h-16 md:h-20 lg:h-24'}`}
               />
-              <div className={`font-montserrat leading-none flex flex-col justify-center transition-all duration-1000 ease-out ${scrolled ? 'text-white h-11' : 'text-white drop-shadow-2xl h-20 md:h-24'}`}>
-                <div className={`font-normal tracking-[0.15em] transition-all duration-1000 ease-out ${scrolled ? 'text-lg mb-0' : 'text-3xl md:text-4xl mb-0.5'}`}>OUTDOOR</div>
-                <div className={`font-black transition-all duration-1000 ease-out ${scrolled ? 'text-lg' : 'text-3xl md:text-4xl'}`} style={{ letterSpacing: '0.72em', width: 'fit-content' }}>ÑUBLE</div>
+              <div className={`font-montserrat leading-none flex flex-col justify-center transition-all duration-1000 ease-out ${scrolled ? 'text-white h-9 sm:h-11' : 'text-white drop-shadow-2xl h-14 sm:h-16 md:h-20 lg:h-24'}`}>
+                <div className={`font-normal tracking-[0.15em] transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg mb-0' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-0.5'}`}>OUTDOOR</div>
+                <div className={`font-black transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'}`} style={{ letterSpacing: '0.72em', width: 'fit-content' }}>ÑUBLE</div>
               </div>
             </a>
 
+            {/* Desktop Navigation */}
             <div className={`hidden md:flex items-center transition-all duration-1000 ease-out ${scrolled ? 'gap-6' : 'gap-8'}`}>
               <a href="#experiencias" className={`font-montserrat font-semibold relative group transition-all duration-700 ease-out ${scrolled ? 'text-white/90 hover:text-white text-sm' : 'text-white hover:text-rio text-lg drop-shadow-lg'}`}>
                 Experiencias
@@ -218,49 +220,88 @@ export default function Home() {
                 </a>
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20 animate-in slide-in-from-top duration-200">
+            <div className="flex flex-col p-6 gap-4">
+              <a
+                href="#experiencias"
+                className="text-white font-montserrat font-semibold py-3 hover:text-rio transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Experiencias
+              </a>
+              <a
+                href="#nosotros"
+                className="text-white font-montserrat font-semibold py-3 hover:text-rio transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Nosotros
+              </a>
+              <Button
+                asChild
+                className="bg-gradient-to-r from-rio to-bosque text-white rounded-full w-full"
+              >
+                <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer">
+                  Reservar Ahora
+                </a>
+              </Button>
+            </div>
+          </div>
+        )}
       </nav>
 
       <main>
         {/* Hero - Dynamic Scroll Images */}
         <section id="hero" className="relative min-h-screen">
           {/* Hero Content */}
-          <div className="relative min-h-screen flex items-start justify-start md:justify-center pt-32 md:pt-44">
-            <div className="relative z-10 container mx-auto px-6">
+          <div className="relative min-h-screen flex items-start justify-start md:justify-center pt-24 sm:pt-28 md:pt-36 lg:pt-44">
+            <div className="relative z-10 container mx-auto px-4 sm:px-6">
               <div className="max-w-2xl">
-                <div className="mb-10 inline-block animate-in fade-in duration-700">
-                  <span className="bg-rio/50 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
+                <div className="mb-6 sm:mb-8 md:mb-10 inline-block animate-in fade-in duration-700">
+                  <span className="bg-rio/50 backdrop-blur-md text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wider">
                     Reserva de la Biósfera UNESCO
                   </span>
                 </div>
 
-                <h1 className="font-montserrat font-black text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1] animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
+                <h1 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-4 sm:mb-5 md:mb-6 leading-[1.1] animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
                   Vive la Aventura<br />
                   del Río Ñuble
                 </h1>
 
-                <p className="text-lg md:text-xl text-white mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
+                <p className="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-7 md:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
                   Rafting profesional con guías certificados en San Fabián de Alico.
                   Tu próxima aventura te espera.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in duration-700 delay-500">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-in fade-in duration-700 delay-500">
                   <Button
                     asChild
                     size="lg"
-                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-10 py-7 text-base md:text-lg rounded-full shadow-[0_12px_35px_rgba(10,132,174,0.5)] hover:shadow-[0_16px_45px_rgba(10,132,174,0.7)] hover:scale-[1.03] transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
+                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 lg:py-7 text-sm sm:text-base md:text-lg rounded-full shadow-[0_12px_35px_rgba(10,132,174,0.5)] hover:shadow-[0_16px_45px_rgba(10,132,174,0.7)] hover:scale-[1.03] transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
                   >
-                    <a href="#experiencias" className="flex items-center gap-3 justify-center">
+                    <a href="#experiencias" className="flex items-center gap-2 sm:gap-3 justify-center">
                       Ver experiencias
-                      <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
                     </a>
                   </Button>
                   <Button
                     asChild
                     size="lg"
                     variant="outline"
-                    className="group relative overflow-hidden border-3 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-10 py-7 text-base md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-black shadow-[0_12px_35px_rgba(255,255,255,0.3)] hover:shadow-[0_16px_45px_rgba(255,255,255,0.5)] hover:scale-[1.03]"
+                    className="group relative overflow-hidden border-3 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 lg:py-7 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-md transition-all duration-300 font-black shadow-[0_12px_35px_rgba(255,255,255,0.3)] hover:shadow-[0_16px_45px_rgba(255,255,255,0.5)] hover:scale-[1.03]"
                   >
                     <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center relative z-10">
                       Reservar ahora
@@ -284,37 +325,37 @@ export default function Home() {
         </section>
 
         {/* Stats Bar */}
-        <section className="relative py-12">
-          <div className="relative container mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <div className="text-center text-white animate-in fade-in duration-700 delay-100 bg-white/20 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:scale-105 hover:bg-white/25 transition-all duration-300">
+        <section className="relative py-8 sm:py-10 md:py-12">
+          <div className="relative container mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-100 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={20} suffix="+" duration={2000} />
-                <div className="font-montserrat text-xs md:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg">Años de Experiencia</div>
+                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Años de Experiencia</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-200 bg-white/20 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:scale-105 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-200 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={100} suffix="%" duration={2000} />
-                <div className="font-montserrat text-xs md:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg">Guías Certificados</div>
+                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Guías Certificados</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-300 bg-white/20 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:scale-105 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-300 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={12} suffix="km" duration={2000} />
-                <div className="font-montserrat text-xs md:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg">De Río Navegable</div>
+                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">De Río Navegable</div>
               </div>
-              <div className="text-center text-white animate-in fade-in duration-700 delay-500 bg-white/20 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/40 shadow-2xl hover:scale-105 hover:bg-white/25 transition-all duration-300">
+              <div className="text-center text-white animate-in fade-in duration-700 delay-500 bg-white/20 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border-2 border-white/40 shadow-2xl hover:md:scale-105 active:scale-95 hover:bg-white/25 transition-all duration-300">
                 <AnimatedCounter end={4.9} suffix="★" duration={2000} decimals={1} />
-                <div className="font-montserrat text-xs md:text-sm uppercase tracking-wider font-bold mt-2 drop-shadow-lg">Valoración</div>
+                <div className="font-montserrat text-xs sm:text-sm uppercase tracking-wider font-bold mt-1 sm:mt-2 drop-shadow-lg">Valoración</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Experiencias - Visual Cards */}
-        <section ref={experienciasRef} id="experiencias" className="relative py-32">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-20 max-w-4xl mx-auto">
-              <h2 className="font-montserrat font-bold text-5xl md:text-6xl text-white mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+        <section ref={experienciasRef} id="experiencias" className="relative py-16 sm:py-20 md:py-24 lg:py-32">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20 max-w-4xl mx-auto">
+              <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-3 sm:mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Elige tu Aventura
               </h2>
-              <p className="text-xl text-white max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 Tres experiencias únicas en el corazón de la Reserva de la Biósfera del Río Ñuble
               </p>
             </div>
