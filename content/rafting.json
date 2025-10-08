@@ -1,0 +1,167 @@
+{
+  "hero": {
+    "title": "Rafting Río Ñuble",
+    "subtitle": "Tu próxima aventura te espera en las aguas del Ñuble",
+    "location": "San Fabián, Región de Ñuble, Chile",
+    "cta": "Reservar por WhatsApp",
+    "phone": "+56 9 XXXX XXXX"
+  },
+  "about": {
+    "title": "Sobre la Experiencia",
+    "description": "Descubre la emoción del rafting en el majestuoso Río Ñuble, uno de los mejores destinos de rafting en Chile. Nuestras aguas cristalinas y rápidos emocionantes te brindarán una experiencia inolvidable rodeado de naturaleza virgen.",
+    "highlights": [
+      "Rápidos clase III-IV ideales para aventureros",
+      "Paisajes cordilleranos únicos",
+      "Guías certificados con años de experiencia",
+      "Equipamiento profesional de última generación"
+    ],
+    "duration": "4-5 horas (2 horas en el río)",
+    "difficulty": "Intermedio - Avanzado",
+    "minAge": "14 años",
+    "groupSize": "4-8 personas por balsa"
+  },
+  "itinerary": {
+    "title": "Itinerario",
+    "steps": [
+      {
+        "time": "09:00 AM",
+        "title": "Punto de Encuentro",
+        "description": "Nos encontramos en San Fabián de Alico para comenzar la aventura."
+      },
+      {
+        "time": "09:30 AM",
+        "title": "Charla de Seguridad y Equipamiento",
+        "description": "Nuestros guías te entregarán el equipo y las instrucciones de seguridad necesarias."
+      },
+      {
+        "time": "10:00 AM",
+        "title": "Inicio del Rafting",
+        "description": "Comenzamos la navegación por el Río Ñuble, enfrentando rápidos emocionantes."
+      },
+      {
+        "time": "12:00 PM",
+        "title": "Finalización y Refrigerio",
+        "description": "Terminamos la aventura con un refrigerio y fotos del recorrido."
+      }
+    ]
+  },
+  "includes": {
+    "title": "Qué Incluye",
+    "items": [
+      "Guía profesional certificado",
+      "Equipo completo de rafting (balsa, remos, chalecos salvavidas)",
+      "Traje de neopreno y casco",
+      "Seguro de accidentes",
+      "Refrigerio post-aventura",
+      "Transporte desde punto de encuentro al río (ida y vuelta)",
+      "Fotografías de la experiencia"
+    ]
+  },
+  "toBring": {
+    "title": "Qué Traer",
+    "items": [
+      "Ropa de baño",
+      "Toalla",
+      "Cambio de ropa seca",
+      "Calzado deportivo que pueda mojarse (no sandalias)",
+      "Protector solar",
+      "Botella de agua",
+      "Lentes de sol con cinta de sujeción (opcional)"
+    ]
+  },
+  "safety": {
+    "title": "Seguridad",
+    "description": "Tu seguridad es nuestra prioridad. Contamos con:",
+    "features": [
+      {
+        "title": "Guías Certificados",
+        "description": "Todos nuestros guías están certificados por la Federación Chilena de Canotaje y tienen años de experiencia."
+      },
+      {
+        "title": "Equipo Profesional",
+        "description": "Utilizamos equipamiento de última generación, revisado y mantenido regularmente."
+      },
+      {
+        "title": "Protocolos de Seguridad",
+        "description": "Seguimos estrictos protocolos de seguridad y realizamos briefings completos antes de cada salida."
+      },
+      {
+        "title": "Seguro de Accidentes",
+        "description": "Todas nuestras actividades están cubiertas por seguro de accidentes."
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Galería",
+    "images": [
+      {
+        "url": "/images/gallery/rafting-1.jpg",
+        "alt": "Grupo disfrutando del rafting en el Río Ñuble"
+      },
+      {
+        "url": "/images/gallery/rafting-2.jpg",
+        "alt": "Rápidos del Río Ñuble"
+      },
+      {
+        "url": "/images/gallery/rafting-3.jpg",
+        "alt": "Paisaje cordillerano durante la aventura"
+      },
+      {
+        "url": "/images/gallery/rafting-4.jpg",
+        "alt": "Equipo de guías profesionales"
+      },
+      {
+        "url": "/images/gallery/rafting-5.jpg",
+        "alt": "Aventureros en acción"
+      },
+      {
+        "url": "/images/gallery/rafting-6.jpg",
+        "alt": "Vista panorámica del Río Ñuble"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "questions": [
+      {
+        "question": "¿Necesito experiencia previa?",
+        "answer": "No es necesaria experiencia previa. Nuestros guías te enseñarán todo lo que necesitas saber antes de iniciar la aventura."
+      },
+      {
+        "question": "¿Cuál es la mejor época para hacer rafting?",
+        "answer": "La temporada ideal es de octubre a marzo, cuando el nivel del río es óptimo para rafting. Sin embargo, operamos todo el año según las condiciones."
+      },
+      {
+        "question": "¿Qué pasa si no sé nadar?",
+        "answer": "Todos los participantes usan chaleco salvavidas certificado. Sin embargo, recomendamos saber nadar para mayor seguridad y confianza."
+      },
+      {
+        "question": "¿Puedo llevar mi cámara?",
+        "answer": "Por seguridad, no recomendamos llevar dispositivos electrónicos en la balsa. Nuestros guías tomarán fotografías profesionales incluidas en el tour."
+      },
+      {
+        "question": "¿Qué medidas de seguridad tienen?",
+        "answer": "Contamos con guías certificados, equipo profesional, seguros de accidentes y seguimos estrictos protocolos de seguridad en todas nuestras actividades."
+      },
+      {
+        "question": "¿Cómo llego a San Fabián?",
+        "answer": "San Fabián de Alico está a 60 km de Chillán. Se puede llegar en auto particular o transporte público. Consulta por nuestro servicio de traslado desde Chillán."
+      },
+      {
+        "question": "¿Cuál es la política de cancelación?",
+        "answer": "Puedes cancelar hasta 48 horas antes para reembolso completo. Las cancelaciones por condiciones climáticas son reembolsadas al 100%."
+      },
+      {
+        "question": "¿Qué incluye el precio?",
+        "answer": "El precio incluye todo el equipo, guía profesional, seguro, transporte al río, refrigerio y fotografías. Solo debes traer ganas de aventura."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "¿Listo para vivir la aventura? Contáctanos y reserva tu experiencia en el Río Ñuble.",
+    "phone": "+56 9 XXXX XXXX",
+    "email": "contacto@outdoornuble.cl",
+    "address": "San Fabián de Alico, Región de Ñuble, Chile"
+  }
+}

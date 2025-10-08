@@ -1,0 +1,91 @@
+{
+  "company": {
+    "name": "Outdoor Ñuble",
+    "tagline": "Tu próxima aventura.",
+    "description": "Somos una empresa de turismo aventura y naturaleza en San Fabián, Ñuble. Ofrecemos experiencias de rafting y outdoor sustentables, guiadas por locales certificados en la Reserva de la Biósfera del Río Ñuble. Promovemos la conexión con la naturaleza, la identidad local y el turismo responsable.",
+    "founded": "2015",
+    "location": "San Fabián de Alico, Región de Ñuble, Chile"
+  },
+  "mission": {
+    "title": "Nuestra Misión",
+    "description": "Promover el turismo sustentable y la conexión con la naturaleza, ofreciendo experiencias de rafting seguras, emocionantes y respetuosas con el medio ambiente, mientras contribuimos al desarrollo económico y social de las comunidades locales."
+  },
+  "vision": {
+    "title": "Nuestra Visión",
+    "description": "Ser la empresa líder en turismo aventura de la Región de Ñuble, reconocida por la excelencia en nuestros servicios, el compromiso con la seguridad y la conservación del patrimonio natural y cultural de la zona."
+  },
+  "values": [
+    {
+      "title": "Seguridad",
+      "description": "La seguridad de nuestros clientes es nuestra máxima prioridad. Contamos con equipamiento certificado y guías altamente capacitados."
+    },
+    {
+      "title": "Sostenibilidad",
+      "description": "Operamos bajo principios de turismo responsable, minimizando nuestro impacto ambiental y promoviendo la conservación del río y su entorno."
+    },
+    {
+      "title": "Excelencia",
+      "description": "Nos esforzamos por ofrecer experiencias de la más alta calidad, superando las expectativas de nuestros clientes en cada aventura."
+    },
+    {
+      "title": "Pasión",
+      "description": "Amamos lo que hacemos. Nuestra pasión por la naturaleza y la aventura se refleja en cada tour que realizamos."
+    },
+    {
+      "title": "Comunidad",
+      "description": "Trabajamos estrechamente con las comunidades locales, generando oportunidades de empleo y desarrollo sostenible en la región."
+    }
+  ],
+  "team": {
+    "title": "Nuestro Equipo",
+    "description": "Contamos con un equipo de guías profesionales certificados por la Federación Chilena de Canotaje, con años de experiencia en el Río Ñuble y profundo conocimiento de la zona.",
+    "certifications": [
+      "Guías certificados por Federación Chilena de Canotaje",
+      "Primeros auxilios en zonas remotas",
+      "Rescate en aguas rápidas (SWR)",
+      "Capacitación en turismo sustentable"
+    ]
+  },
+  "experience": {
+    "title": "Nuestra Experiencia",
+    "yearsOfOperation": 9,
+    "happyCustomers": "5000+",
+    "toursCompleted": "1500+",
+    "safetyRecord": "100% sin incidentes graves"
+  },
+  "whyChooseUs": [
+    {
+      "title": "Experiencia Local",
+      "description": "Conocemos el Río Ñuble como nadie. Nuestros guías son locales con años de experiencia navegando sus aguas."
+    },
+    {
+      "title": "Equipamiento Profesional",
+      "description": "Utilizamos solo equipamiento de marcas reconocidas, mantenido y renovado regularmente."
+    },
+    {
+      "title": "Grupos Reducidos",
+      "description": "Trabajamos con grupos pequeños para garantizar una experiencia personalizada y segura."
+    },
+    {
+      "title": "Compromiso Ambiental",
+      "description": "Operamos bajo los más altos estándares de turismo sustentable, protegiendo nuestro río y su ecosistema."
+    },
+    {
+      "title": "Todo Incluido",
+      "description": "Nuestros tours incluyen todo lo necesario: equipo, transporte, guías, seguro y refrigerio."
+    },
+    {
+      "title": "Flexibilidad",
+      "description": "Adaptamos nuestros tours a diferentes niveles de experiencia, desde principiantes hasta expertos."
+    }
+  ],
+  "contact": {
+    "phone": "+56 9 XXXX XXXX",
+    "email": "contacto@outdoornuble.cl",
+    "address": "San Fabián de Alico, Región de Ñuble, Chile",
+    "socialMedia": {
+      "facebook": "https://facebook.com/outdoornuble",
+      "instagram": "https://instagram.com/outdoornuble"
+    }
+  }
+}
