@@ -3,9 +3,8 @@ import { Resend } from "resend";
 import { contactFormSchema } from "@/lib/schemas";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await request.json();
 
