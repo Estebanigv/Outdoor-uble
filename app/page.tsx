@@ -237,30 +237,75 @@ export default function Home() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20 animate-in slide-in-from-top duration-200">
-            <div className="flex flex-col p-6 gap-4">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20 animate-in slide-in-from-top duration-200 max-h-[80vh] overflow-y-auto">
+            <div className="flex flex-col p-6 gap-3">
+              <a
+                href="#hero"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Inicio
+              </a>
               <a
                 href="#experiencias"
-                className="text-white font-montserrat font-semibold py-3 hover:text-rio transition-colors"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Experiencias
               </a>
               <a
+                href="#actividades-extras"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Actividades Extras
+              </a>
+              <a
+                href="#empresas"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Grupos Corporativos
+              </a>
+              <a
+                href="#galeria"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Galería
+              </a>
+              <a
+                href="#testimonios"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Testimonios
+              </a>
+              <a
                 href="#nosotros"
-                className="text-white font-montserrat font-semibold py-3 hover:text-rio transition-colors"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Nosotros
               </a>
-              <Button
-                asChild
-                className="bg-gradient-to-r from-rio to-bosque text-white rounded-full w-full"
+              <a
+                href="#contacto"
+                className="text-white font-montserrat font-semibold py-3 px-4 hover:text-rio hover:bg-white/5 rounded-lg transition-all"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer">
-                  Reservar Ahora
-                </a>
-              </Button>
+                Contacto
+              </a>
+
+              <div className="border-t border-white/20 pt-4 mt-2">
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-rio to-bosque text-white rounded-full w-full py-4 text-base font-bold shadow-lg"
+                >
+                  <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer">
+                    Reservar Ahora
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         )}
