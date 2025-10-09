@@ -99,10 +99,10 @@ export default function SideNavigation() {
 
                 {/* Label with background - More elegant */}
                 <div
-                  className={`font-montserrat font-semibold text-xs tracking-wide transition-all duration-300 whitespace-nowrap px-4 py-2 rounded-full backdrop-blur-md ${
+                  className={`font-montserrat font-semibold text-xs tracking-wide transition-all duration-300 whitespace-nowrap px-4 py-2 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 ${
                     isActive
-                      ? 'text-white bg-white/10 opacity-100 border border-white/15'
-                      : 'text-white/80 bg-white/5 opacity-0 group-hover:opacity-100 border border-white/10'
+                      ? 'text-white bg-white/10 border border-white/15'
+                      : 'text-white/80 bg-white/5 border border-white/10'
                   }`}
                 >
                   {section.label}
