@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Chivo, Work_Sans, Montserrat } from "next/font/google";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 const chivo = Chivo({
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Outdoor Ñuble",
   },
   description:
-    "Turismo aventura y naturaleza en San Fabián, Ñuble. Rafting y experiencias outdoor guiadas por locales certificados en la Reserva de la Biósfera del Río Ñuble.",
+    "Turismo aventura y naturaleza en San Fabián, Ñuble. Rafting y experiencias outdoor guiadas por locales certificados en la Reserva de la Biósfera declarada por la UNESCO.",
   keywords:
     "rafting ñuble, turismo aventura san fabián, outdoor chile, río ñuble, rafting chile, reserva biosfera ñuble, turismo sustentable, aventura cordillera",
   authors: [{ name: "Outdoor Ñuble" }],
@@ -80,6 +81,7 @@ export default function RootLayout({
   return (
     <html lang="es-CL" suppressHydrationWarning>
       <body className={`${workSans.variable} ${chivo.variable} ${montserrat.variable} font-sans antialiased`}>
+        <GoogleAnalytics />
         {children}
       </body>
     </html>

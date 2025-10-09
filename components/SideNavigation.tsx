@@ -9,10 +9,14 @@ interface Section {
 }
 
 const sections: Section[] = [
-  { id: "hero", label: "Aquí Comienza tu Aventura", number: "01" },
-  { id: "experiencias", label: "Elige tu Nueva Experiencia", number: "02" },
-  { id: "nosotros", label: "Nosotros", number: "03" },
-  { id: "contacto", label: "Reserva tu Aventura", number: "04" },
+  { id: "hero", label: "Comienza tu aventura", number: "01" },
+  { id: "experiencias", label: "Experiencias", number: "02" },
+  { id: "actividades-extras", label: "Actividades Extras", number: "03" },
+  { id: "empresas", label: "Grupos", number: "04" },
+  { id: "galeria", label: "Galería", number: "05" },
+  { id: "testimonios", label: "Testimonios", number: "06" },
+  { id: "nosotros", label: "Nosotros", number: "07" },
+  { id: "contacto", label: "Contacto", number: "08" },
 ];
 
 export default function SideNavigation() {
@@ -20,16 +24,26 @@ export default function SideNavigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Determine active section
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      // Determine active section based on viewport center
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
+      let currentSection = sections[0].id;
+
+      for (let i = 0; i < sections.length; i++) {
         const section = document.getElementById(sections[i].id);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i].id);
-          break;
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+
+          // Check if scroll position is within this section
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            currentSection = sections[i].id;
+            break;
+          }
         }
       }
+
+      setActiveSection(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,7 +53,7 @@ export default function SideNavigation() {
 
 
   return (
-    <div className="fixed left-8 top-[68%] -translate-y-1/2 z-40 hidden xl:block">
+    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-30 hidden xl:block">
       <div className="relative">
         {/* Vertical line - Straight and subtle */}
         <div className="absolute left-7 top-0 bottom-0 w-px bg-white/15"></div>
