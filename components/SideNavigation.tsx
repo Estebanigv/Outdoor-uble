@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface Section {
   id: string;
@@ -21,35 +21,62 @@ const sections: Section[] = [
 
 export default function SideNavigation() {
   const [activeSection, setActiveSection] = useState("hero");
+  const [indicatorPosition, setIndicatorPosition] = useState(0);
+  const navItemsRef = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      // Determine active section based on viewport center
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Determine active section based on viewport center
+          const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      let currentSection = sections[0].id;
+          let currentSection = sections[0].id;
+          let minDistance = Infinity;
 
-      for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i].id);
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
+          // Find the section closest to the scroll position
+          for (let i = 0; i < sections.length; i++) {
+            const section = document.getElementById(sections[i].id);
+            if (section) {
+              const sectionTop = section.offsetTop;
+              const sectionMiddle = sectionTop + section.offsetHeight / 2;
+              const distance = Math.abs(scrollPosition - sectionMiddle);
 
-          // Check if scroll position is within this section
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            currentSection = sections[i].id;
-            break;
+              if (distance < minDistance) {
+                minDistance = distance;
+                currentSection = sections[i].id;
+              }
+            }
           }
-        }
-      }
 
-      setActiveSection(currentSection);
+          setActiveSection(currentSection);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update indicator position when active section changes
+  useEffect(() => {
+    const activeNavItem = navItemsRef.current[activeSection];
+    if (activeNavItem) {
+      const navContainer = activeNavItem.parentElement;
+      if (navContainer) {
+        const itemRect = activeNavItem.getBoundingClientRect();
+        const containerRect = navContainer.getBoundingClientRect();
+        const relativeTop = itemRect.top - containerRect.top;
+        // Center the indicator on the circle (24px is half of the 48px circle height)
+        setIndicatorPosition(relativeTop + 24);
+      }
+    }
+  }, [activeSection]);
 
 
   return (
@@ -60,10 +87,11 @@ export default function SideNavigation() {
 
         {/* Active indicator - Subtle glowing dot */}
         <div
-          className="absolute left-7 w-2 h-2 bg-gradient-to-br from-rio to-bosque rounded-full transition-all duration-500 shadow-[0_0_12px_rgba(10,132,174,0.5)]"
+          className="absolute left-7 w-2 h-2 bg-gradient-to-br from-rio to-bosque rounded-full shadow-[0_0_12px_rgba(10,132,174,0.5)]"
           style={{
-            top: `${sections.findIndex(s => s.id === activeSection) * 80 + 26}px`,
+            top: `${indicatorPosition}px`,
             transform: 'translateX(-50%)',
+            transition: 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-rio to-bosque rounded-full animate-ping opacity-50"></div>
@@ -76,6 +104,9 @@ export default function SideNavigation() {
             return (
               <a
                 key={section.id}
+                ref={(el) => {
+                  navItemsRef.current[section.id] = el;
+                }}
                 href={`#${section.id}`}
                 className="group flex items-center gap-4 py-6 transition-all duration-300 hover:translate-x-2"
               >

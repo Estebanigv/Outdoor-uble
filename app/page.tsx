@@ -6,9 +6,25 @@ import SideNavigation from "@/components/SideNavigation";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import SocialShare from "@/components/SocialShare";
+// import RaftingMap from "@/components/RaftingMap";
 import { getWhatsAppLink, getDefaultRaftingMessage } from "@/lib/getWhatsAppLink";
 import { Clock, Users, MapPin, Star, Shield, Award, Heart, ChevronDown, Check, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+
+// Estilos para animación de zoom loop
+const styles = `
+  @keyframes subtleZoom {
+    0%, 100% {
+      transform: scale(1.05);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+  }
+  .animate-subtle-zoom {
+    animation: subtleZoom 8s ease-in-out infinite;
+  }
+`;
 
 function AnimatedCounter({ end, duration = 2000, suffix = "", prefix = "", decimals = 0 }: { end: number; duration?: number; suffix?: string; prefix?: string; decimals?: number }) {
   const [count, setCount] = useState(0);
@@ -65,6 +81,9 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const experienciasRef = useRef<HTMLElement>(null);
   const nosotrosRef = useRef<HTMLElement>(null);
+  const actividadesExtrasRef = useRef<HTMLElement>(null);
+  const empresasRef = useRef<HTMLElement>(null);
+  const testimoniosRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,11 +92,20 @@ export default function Home() {
       // Get section positions
       const experienciasTop = experienciasRef.current?.offsetTop || 0;
       const nosotrosTop = nosotrosRef.current?.offsetTop || 0;
+      const actividadesExtrasTop = actividadesExtrasRef.current?.offsetTop || 0;
+      const empresasTop = empresasRef.current?.offsetTop || 0;
+      const testimoniosTop = testimoniosRef.current?.offsetTop || 0;
       const scrollY = window.scrollY;
       const triggerPoint = window.innerHeight * 0.5; // Trigger when section is halfway in viewport
 
       // Determine which image to show based on scroll position
-      if (scrollY + triggerPoint >= nosotrosTop) {
+      if (scrollY + triggerPoint >= testimoniosTop) {
+        setCurrentImage(6); // Testimonios
+      } else if (scrollY + triggerPoint >= empresasTop) {
+        setCurrentImage(5); // Empresas, Colegios e Instituciones
+      } else if (scrollY + triggerPoint >= actividadesExtrasTop) {
+        setCurrentImage(4); // Actividades Extras
+      } else if (scrollY + triggerPoint >= nosotrosTop) {
         setCurrentImage(3); // 20 Años de Aventura
       } else if (scrollY + triggerPoint >= experienciasTop) {
         setCurrentImage(2); // Elige tu Aventura
@@ -141,6 +169,7 @@ export default function Home() {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
       <WhatsAppFloatingCTA phone="+56932344214" />
       <SideNavigation />
 
@@ -148,7 +177,7 @@ export default function Home() {
       <div className="fixed top-0 left-0 right-0 h-screen -z-10 overflow-hidden">
         {/* Image 1 - Hero Principal */}
         <img
-          src="/images/freepik__candid-photography-with-natural-textures-and-highl__34529.webp"
+          src="/images/Fondos/freepik__aleja-mas-la-toma-que-vea-mas-lejos-la-situacion-t__94118.webp"
           alt="Vista aérea Rafting Outdoor Ñuble"
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
@@ -159,7 +188,7 @@ export default function Home() {
 
         {/* Image 2 - Elige tu Aventura */}
         <img
-          src="/images/2.webp"
+          src="/images/Fondos/freepik__aleja-mas-la-toma-que-vea-mas-lejos-la-situacion-t__94119.webp"
           alt="Elige tu Aventura Rafting Outdoor Ñuble"
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
@@ -179,30 +208,73 @@ export default function Home() {
           }}
         />
 
-        {/* Overlay gradient - más oscuro en mobile para mejor legibilidad */}
-        <div className="absolute inset-0 bg-gradient-to-b from-grafito/40 via-grafito/20 to-grafito/50 md:from-grafito/30 md:via-transparent md:to-grafito/40" />
+        {/* Image 4 - Actividades Extras */}
+        <img
+          src="/images/Fondos/freepik__genera-una-toma-senital-de-esta-imagen-vista-desde__94120.webp"
+          alt="Actividades Extras en Outdoor Ñuble"
+          className="absolute w-full h-full object-cover transition-opacity duration-700"
+          style={{
+            opacity: currentImage === 4 ? 1 : 0,
+            objectPosition: 'center 40%'
+          }}
+        />
+
+        {/* Image 5 - Empresas, Colegios e Instituciones */}
+        <img
+          src="/images/Fondos/freepik__genera-una-toma-senital-de-esta-imagen-vista-desde__94121.webp"
+          alt="Empresas, Colegios e Instituciones - Outdoor Ñuble"
+          className="absolute w-full h-full object-cover transition-opacity duration-700"
+          style={{
+            opacity: currentImage === 5 ? 1 : 0,
+            objectPosition: 'center 40%'
+          }}
+        />
+
+        {/* Image 6 - Testimonios */}
+        <img
+          src="/images/Fondos/freepik__haz-que-se-vea-un-grupo-donde-un-anglulo-tras-los-__94122.webp"
+          alt="Testimonios - Outdoor Ñuble"
+          className="absolute w-full h-full object-cover transition-opacity duration-700"
+          style={{
+            opacity: currentImage === 6 ? 1 : 0,
+            objectPosition: 'center 40%'
+          }}
+        />
+
+        {/* Overlay gradient - sutil y elegante para mejor integración */}
+        <div className="absolute inset-0 bg-gradient-to-br from-grafito/50 via-grafito/10 to-transparent md:from-grafito/40 md:via-transparent md:to-grafito/20" />
       </div>
 
       {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out ${scrolled ? 'bg-black/70 backdrop-blur-xl shadow-2xl' : 'bg-transparent py-3 sm:py-4 md:py-6'}`}
       >
-        <div className={`transition-all duration-1000 ease-out ${scrolled ? 'w-full px-4 sm:px-8 md:px-12 py-3 sm:py-4' : 'container mx-auto px-4 sm:px-6'}`}>
+        <div className={`transition-all duration-1000 ease-out ${scrolled ? 'w-full px-4 sm:px-8 md:px-12 py-3 sm:py-4' : 'container mx-auto px-6 sm:px-8 xl:pl-32'}`}>
           {/* Gradient accent line on top when scrolled */}
           <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-rio to-transparent transition-opacity duration-1000 ${scrolled ? 'opacity-60' : 'opacity-0'}`}></div>
 
           <div className="flex items-center justify-between transition-all duration-1000 ease-out">
-            <a href="#" className="flex items-center gap-2 sm:gap-3 transition-all duration-1000 ease-out">
-              <img
-                src="/images/isotipo.svg"
-                alt="Outdoor Ñuble"
-                className={`w-auto transition-all duration-1000 ease-out ${scrolled ? 'h-9 sm:h-11' : 'h-14 sm:h-16 md:h-20 lg:h-24'}`}
-              />
-              <div className={`font-montserrat leading-none flex flex-col justify-center transition-all duration-1000 ease-out ${scrolled ? 'text-white h-9 sm:h-11' : 'text-white drop-shadow-2xl h-14 sm:h-16 md:h-20 lg:h-24'}`}>
-                <div className={`font-normal tracking-[0.15em] transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg mb-0' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-0.5'}`}>OUTDOOR</div>
-                <div className={`font-black transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg tracking-[0.3em]' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.72em]'}`} style={{ width: 'fit-content' }}>ÑUBLE</div>
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <a href="#" className="flex items-center gap-2 sm:gap-3 transition-all duration-1000 ease-out">
+                <img
+                  src="/images/isotipo.svg"
+                  alt="Outdoor Ñuble"
+                  className={`w-auto transition-all duration-1000 ease-out ${scrolled ? 'h-9 sm:h-11' : 'h-14 sm:h-16 md:h-20 lg:h-24'}`}
+                />
+                <div className={`font-montserrat leading-none flex flex-col justify-center transition-all duration-1000 ease-out ${scrolled ? 'text-white h-9 sm:h-11' : 'text-white drop-shadow-2xl h-14 sm:h-16 md:h-20 lg:h-24'}`}>
+                  <div className={`font-normal tracking-[0.15em] transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg mb-0' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-0.5'}`}>OUTDOOR</div>
+                  <div className={`font-black transition-all duration-1000 ease-out ${scrolled ? 'text-base sm:text-lg tracking-[0.3em]' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.72em]'}`} style={{ width: 'fit-content' }}>ÑUBLE</div>
+                </div>
+              </a>
+
+              {/* Badge UNESCO debajo del logo */}
+              <div className={`transition-all duration-1000 ease-out ${scrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'} flex`}>
+                <span className="bg-white/10 backdrop-blur-xl text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-lg uppercase tracking-wide flex items-center justify-center gap-2 flex-1 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-rio animate-pulse"></span>
+                  <span>Reserva Biósfera UNESCO</span>
+                </span>
               </div>
-            </a>
+            </div>
 
             {/* Desktop Navigation */}
             <div className={`hidden md:flex items-center transition-all duration-1000 ease-out ${scrolled ? 'gap-6' : 'gap-8'}`}>
@@ -315,56 +387,49 @@ export default function Home() {
         {/* Hero - Dynamic Scroll Images */}
         <section id="hero" className="relative min-h-screen">
           {/* Hero Content */}
-          <div className="relative min-h-screen flex items-center md:items-start md:justify-center pt-16 sm:pt-20 md:pt-28 lg:pt-36 pb-12">
-            <div className="relative z-10 container mx-auto px-6 sm:px-8 xl:pl-32">
-              <div className="max-w-3xl">
-                <div className="mb-4 sm:mb-6 md:mb-7 inline-block animate-in fade-in duration-700">
-                  <span className="bg-rio/60 backdrop-blur-md text-white px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full text-[10px] sm:text-xs md:text-sm font-bold border-2 border-white/40 shadow-xl uppercase tracking-wide sm:tracking-wider max-w-[90vw] inline-block text-center leading-tight">
-                    Reserva de la Biósfera declarada por la UNESCO
-                  </span>
-                </div>
-
-                <h1 className="font-montserrat font-black text-[2rem] leading-[1.15] sm:text-[2.5rem] md:text-5xl lg:text-6xl xl:text-7xl text-white mb-4 sm:mb-5 md:mb-5 lg:mb-6 animate-in fade-in duration-700 delay-150 drop-shadow-[0_6px_12px_rgba(0,0,0,0.95)]">
+          <div className="relative min-h-screen flex items-center justify-start pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-16">
+            <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 xl:pl-24">
+              <div className="max-w-2xl lg:max-w-3xl">
+                {/* Título optimizado */}
+                <h1 className="font-montserrat font-black text-[2.25rem] leading-[1.1] sm:text-[2.75rem] md:text-5xl lg:text-6xl text-white mb-5 sm:mb-6 animate-in fade-in duration-700 delay-150 drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
                   Vive la Aventura<br />
-                  del Río Ñuble
+                  <span className="text-white/95">del Río Ñuble</span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-lg lg:text-xl text-white mb-5 sm:mb-6 md:mb-7 lg:mb-8 font-montserrat font-normal leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)] max-w-xl">
-                  Rafting profesional con guías certificados en San Fabián de Alico.
-                  Tu próxima aventura te espera.
+                {/* Descripción más sutil */}
+                <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-7 md:mb-8 font-montserrat font-light leading-relaxed animate-in fade-in duration-700 delay-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] max-w-lg">
+                  Rafting profesional con guías certificados en San Fabián de Alico
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-4 animate-in fade-in duration-700 delay-500">
+                {/* Botones más integrados y elegantes */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-in fade-in duration-700 delay-500">
                   <Button
                     asChild
-                    className="group bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-8 sm:px-10 md:px-12 lg:px-14 py-5 sm:py-6 md:py-7 lg:py-8 text-lg sm:text-xl md:text-2xl rounded-full shadow-[0_8px_25px_rgba(10,132,174,0.4)] hover:shadow-[0_12px_35px_rgba(10,132,174,0.6)] hover:scale-[1.03] active:scale-95 transition-all duration-300 font-bold border-2 border-white/30 backdrop-blur-sm"
+                    className="group relative overflow-hidden bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-7 sm:px-9 py-4 sm:py-5 text-base sm:text-lg rounded-full shadow-[0_8px_30px_rgba(10,132,174,0.4)] hover:shadow-[0_12px_40px_rgba(10,132,174,0.6)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 font-semibold border-2 border-white/20"
                   >
-                    <a href="#experiencias" className="flex items-center gap-2 justify-center">
-                      Ver experiencias
-                      <ChevronDown className="w-5 h-5 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform" />
+                    <a href="#experiencias" className="flex items-center gap-2 justify-center relative z-10">
+                      <span>Descubre Aventuras</span>
+                      <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
                     </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
-                    className="group relative overflow-hidden border-2 border-white text-white bg-white/15 hover:bg-white hover:text-rio px-8 sm:px-10 md:px-12 lg:px-14 py-5 sm:py-6 md:py-7 lg:py-8 text-lg sm:text-xl md:text-2xl rounded-full backdrop-blur-md transition-all duration-300 font-bold shadow-[0_8px_25px_rgba(255,255,255,0.2)] hover:shadow-[0_12px_35px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-95"
+                    className="group relative overflow-hidden border-2 border-white/60 text-white bg-white/5 hover:bg-white/15 hover:border-white/80 px-7 sm:px-9 py-4 sm:py-5 text-base sm:text-lg rounded-full backdrop-blur-xl transition-all duration-300 font-semibold shadow-[0_8px_30px_rgba(255,255,255,0.15)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.25)] hover:scale-[1.03] active:scale-[0.97]"
                   >
                     <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center relative z-10">
-                      Reservar ahora
+                      <span>Reservar Ahora</span>
                     </a>
                   </Button>
                 </div>
               </div>
             </div>
 
-            {/* Scroll Indicator - Hidden on mobile */}
-            <a href="#experiencias" className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-all duration-300 group">
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex flex-col items-center">
-                  <span className="text-white text-sm font-montserrat font-semibold uppercase tracking-wide drop-shadow-2xl">Descubre</span>
-                  <span className="text-white/90 text-xs font-montserrat font-normal lowercase tracking-wider drop-shadow-xl">tu aventura</span>
-                </div>
-                <ChevronDown className="w-6 h-6 text-white drop-shadow-2xl group-hover:translate-y-1 transition-transform" />
+            {/* Scroll Indicator más sutil */}
+            <a href="#experiencias" className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-all duration-300 group">
+              <div className="flex flex-col items-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
+                <span className="text-white text-xs font-montserrat font-medium uppercase tracking-widest drop-shadow-lg">Descubre</span>
+                <ChevronDown className="w-5 h-5 text-white drop-shadow-lg group-hover:translate-y-0.5 transition-transform" />
               </div>
             </a>
           </div>
@@ -406,39 +471,46 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mt-8">
               {/* Sección Ñuble Bajo */}
-              <div
-                className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-rio/30 transition-all duration-500 border-2 border-rio/40"
-                onMouseEnter={() => setHoveredExperience('bajo')}
-                onMouseLeave={() => setHoveredExperience(null)}
-              >
-                {/* Image Section - Top Half */}
-                <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
+              <div className="relative pt-4">
+                <div
+                  className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-rio/30 transition-all duration-500 border-2 border-rio/40"
+                  onMouseEnter={() => setHoveredExperience('bajo')}
+                  onMouseLeave={() => setHoveredExperience(null)}
+                >
+                  {/* Badge "Más Popular" dentro de la ficha, arriba */}
+                  <div className="absolute top-3 left-3 bg-yellow-400 text-grafito px-3 py-1.5 rounded-md font-bold text-[10px] sm:text-xs shadow-lg z-20 flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    MÁS POPULAR
+                  </div>
+
+                  {/* Image Section - Top Half */}
+                  <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
                   {/* Image on Hover - only shows when hovering */}
                   <img
                     src="/images/Rafting Familiar.webp"
                     alt="Ñuble Bajo"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${hoveredExperience === 'bajo' ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${hoveredExperience === 'bajo' ? 'opacity-100 animate-subtle-zoom' : 'opacity-0 scale-100'}`}
                   />
 
                   {/* Color overlay when NOT hovering - gives presence to the box */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-rio/25 to-rio/15 backdrop-blur-sm transition-opacity duration-700 ${hoveredExperience === 'bajo' ? 'opacity-0' : 'opacity-100'}`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-rio/20 to-rio/10 backdrop-blur-[2px] transition-opacity duration-700 ${hoveredExperience === 'bajo' ? 'opacity-0' : 'opacity-100'}`} />
 
-                  {/* Badge */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-rio text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base shadow-xl backdrop-blur-sm border-2 border-white/30 z-10">
+                  {/* Badge Clase */}
+                  <div className="absolute top-3 right-3 bg-rio/90 text-white px-3 py-1.5 rounded-md font-bold text-xs shadow-lg backdrop-blur-sm border border-white/40 z-10">
                     Clase III
                   </div>
 
-                  {/* Subtle dark gradient overlay on hover - lets image show clearly */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/60 via-grafito/20 to-transparent transition-opacity duration-700 ${hoveredExperience === 'bajo' ? 'opacity-100' : 'opacity-0'}`} />
+                  {/* Lighter dark gradient overlay on hover - clear image visibility */}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/35 via-transparent to-transparent transition-opacity duration-700 ${hoveredExperience === 'bajo' ? 'opacity-100' : 'opacity-0'}`} />
 
-                  {/* Title and description - moves up on hover */}
-                  <div className={`absolute left-0 right-0 p-6 z-10 transition-all duration-700 ${hoveredExperience === 'bajo' ? 'top-6' : 'top-1/2'}`}>
-                    <h3 className="font-montserrat font-black text-3xl text-white mb-2 drop-shadow-2xl">
+                  {/* Title only on hover - description hidden */}
+                  <div className={`absolute left-0 right-0 px-6 py-4 pr-20 z-10 transition-all duration-700 ease-out ${hoveredExperience === 'bajo' ? 'bottom-6 opacity-100' : 'top-1/2 -translate-y-1/2 opacity-100'}`}>
+                    <h3 className={`font-montserrat font-black text-2xl sm:text-3xl text-white mb-2 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] leading-tight transition-all duration-700 ease-out`}>
                       Ñuble Bajo
                     </h3>
-                    <p className="text-white text-base mb-4 drop-shadow-xl font-medium">
+                    <p className={`text-white text-xs sm:text-sm leading-relaxed drop-shadow-xl font-medium transition-all duration-700 ease-out ${hoveredExperience === 'bajo' ? 'opacity-0 max-h-0' : 'opacity-100 max-h-20'}`}>
                       Ideal para familias y principiantes. Nuestra sección más trabajada comercialmente.
                     </p>
                   </div>
@@ -446,41 +518,41 @@ export default function Home() {
 
                 {/* Info Section - Bottom Half - White Background */}
                 <div className="bg-white p-6 rounded-b-3xl">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-rio/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-rio" />
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-4 mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-rio/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4 text-rio" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">6 km</div>
-                        <div className="text-xs text-grafito/60">Recorrido</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">6 km</div>
+                        <div className="text-[11px] text-grafito/60">Recorrido</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-rio/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Users className="w-5 h-5 text-rio" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-rio/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Users className="w-4 h-4 text-rio" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">8+ años</div>
-                        <div className="text-xs text-grafito/60">Edad mínima</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">8+ años</div>
+                        <div className="text-[11px] text-grafito/60">Edad mínima</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-rio/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Star className="w-5 h-5 text-rio" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-rio/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Clock className="w-4 h-4 text-rio" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Todo el año</div>
-                        <div className="text-xs text-grafito/60">Temporada</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Todo el año</div>
+                        <div className="text-[11px] text-grafito/60">Temporada</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-rio/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Shield className="w-5 h-5 text-rio" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-rio/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-4 h-4 text-rio" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Media</div>
-                        <div className="text-xs text-grafito/60">Dificultad</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Media</div>
+                        <div className="text-[11px] text-grafito/60">Dificultad</div>
                       </div>
                     </div>
                   </div>
@@ -501,40 +573,48 @@ export default function Home() {
                     </Button>
                   </div>
                 </div>
+                </div>
               </div>
 
               {/* Sección Ñuble Bajo Plus */}
-              <div
-                className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-bosque/30 transition-all duration-500 border-2 border-bosque/40"
-                onMouseEnter={() => setHoveredExperience('bajoplus')}
-                onMouseLeave={() => setHoveredExperience(null)}
-              >
-                {/* Image Section - Top Half */}
-                <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
+              <div className="relative pt-4">
+                <div
+                  className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-bosque/30 transition-all duration-500 border-2 border-bosque/40"
+                  onMouseEnter={() => setHoveredExperience('bajoplus')}
+                  onMouseLeave={() => setHoveredExperience(null)}
+                >
+                  {/* Badge "Incluye Snack" dentro de la ficha, arriba */}
+                  <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1.5 rounded-md font-bold text-[10px] sm:text-xs shadow-lg z-20 flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    SNACK INCLUIDO
+                  </div>
+
+                  {/* Image Section - Top Half */}
+                  <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
                   {/* Image on Hover - only shows when hovering */}
                   <img
-                    src="/images/Rafting Familiar.webp"
+                    src="/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11748.webp"
                     alt="Ñuble Bajo Plus"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${hoveredExperience === 'bajoplus' ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${hoveredExperience === 'bajoplus' ? 'opacity-100 animate-subtle-zoom' : 'opacity-0 scale-100'}`}
                   />
 
                   {/* Color overlay when NOT hovering - gives presence to the box */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-bosque/25 to-bosque/15 backdrop-blur-sm transition-opacity duration-700 ${hoveredExperience === 'bajoplus' ? 'opacity-0' : 'opacity-100'}`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-bosque/20 to-bosque/10 backdrop-blur-[2px] transition-opacity duration-700 ${hoveredExperience === 'bajoplus' ? 'opacity-0' : 'opacity-100'}`} />
 
-                  {/* Badge */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-bosque text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base shadow-xl backdrop-blur-sm border-2 border-white/30 z-10">
+                  {/* Badge Clase */}
+                  <div className="absolute top-3 right-3 bg-bosque/90 text-white px-3 py-1.5 rounded-md font-bold text-xs shadow-lg backdrop-blur-sm border border-white/40 z-10">
                     Clase III
                   </div>
 
-                  {/* Subtle dark gradient overlay on hover - lets image show clearly */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/60 via-grafito/20 to-transparent transition-opacity duration-700 ${hoveredExperience === 'bajoplus' ? 'opacity-100' : 'opacity-0'}`} />
+                  {/* Lighter dark gradient overlay on hover - clear image visibility */}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/35 via-transparent to-transparent transition-opacity duration-700 ${hoveredExperience === 'bajoplus' ? 'opacity-100' : 'opacity-0'}`} />
 
-                  {/* Title and description - moves up on hover */}
-                  <div className={`absolute left-0 right-0 p-6 z-10 transition-all duration-700 ${hoveredExperience === 'bajoplus' ? 'top-6' : 'top-1/2'}`}>
-                    <h3 className="font-montserrat font-black text-3xl text-white mb-2 drop-shadow-2xl">
+                  {/* Title only on hover - description hidden */}
+                  <div className={`absolute left-0 right-0 px-6 py-4 pr-20 z-10 transition-all duration-700 ease-out ${hoveredExperience === 'bajoplus' ? 'bottom-6 opacity-100' : 'top-1/2 -translate-y-1/2 opacity-100'}`}>
+                    <h3 className={`font-montserrat font-black text-2xl sm:text-3xl text-white mb-2 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] leading-tight transition-all duration-700 ease-out`}>
                       Ñuble Bajo Plus
                     </h3>
-                    <p className="text-white text-base mb-4 drop-shadow-xl font-medium">
+                    <p className={`text-white text-xs sm:text-sm leading-relaxed drop-shadow-xl font-medium transition-all duration-700 ease-out ${hoveredExperience === 'bajoplus' ? 'opacity-0 max-h-0' : 'opacity-100 max-h-20'}`}>
                       Similar a Ñuble Bajo pero más extensa. Mayor cantidad de rápidos con snack incluido.
                     </p>
                   </div>
@@ -542,41 +622,41 @@ export default function Home() {
 
                 {/* Info Section - Bottom Half - White Background */}
                 <div className="bg-white p-6 rounded-b-3xl">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-bosque/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-bosque" />
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-4 mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-bosque/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4 text-bosque" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">9 km</div>
-                        <div className="text-xs text-grafito/60">Recorrido</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">9 km</div>
+                        <div className="text-[11px] text-grafito/60">Recorrido</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-bosque/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Users className="w-5 h-5 text-bosque" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-bosque/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Users className="w-4 h-4 text-bosque" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">12+ años</div>
-                        <div className="text-xs text-grafito/60">Edad mínima</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">12+ años</div>
+                        <div className="text-[11px] text-grafito/60">Edad mínima</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-bosque/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Star className="w-5 h-5 text-bosque" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-bosque/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Clock className="w-4 h-4 text-bosque" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Sep - Dic</div>
-                        <div className="text-xs text-grafito/60">Temporada</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Sep - Dic</div>
+                        <div className="text-[11px] text-grafito/60">Temporada</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-bosque/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Shield className="w-5 h-5 text-bosque" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-bosque/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-4 h-4 text-bosque" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Media</div>
-                        <div className="text-xs text-grafito/60">Dificultad</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Media</div>
+                        <div className="text-[11px] text-grafito/60">Dificultad</div>
                       </div>
                     </div>
                   </div>
@@ -597,40 +677,48 @@ export default function Home() {
                     </Button>
                   </div>
                 </div>
+                </div>
               </div>
 
               {/* Sección Ñuble Alto */}
-              <div
-                className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#FF6B35]/30 transition-all duration-500 border-2 border-[#FF6B35]/40"
-                onMouseEnter={() => setHoveredExperience('alto')}
-                onMouseLeave={() => setHoveredExperience(null)}
-              >
-                {/* Image Section - Top Half */}
-                <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
+              <div className="relative pt-4">
+                <div
+                  className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#FF6B35]/30 transition-all duration-500 border-2 border-[#FF6B35]/40"
+                  onMouseEnter={() => setHoveredExperience('alto')}
+                  onMouseLeave={() => setHoveredExperience(null)}
+                >
+                  {/* Badge "Máxima Adrenalina" dentro de la ficha, arriba */}
+                  <div className="absolute top-3 left-3 bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-1.5 rounded-md font-bold text-[10px] sm:text-xs shadow-lg z-20 flex items-center gap-1">
+                    <Award className="w-3 h-3" />
+                    ADRENALINA
+                  </div>
+
+                  {/* Image Section - Top Half */}
+                  <div className="aspect-[4/3] relative overflow-hidden rounded-t-3xl">
                   {/* Image on Hover - only shows when hovering */}
                   <img
                     src="/images/Rafting Ñuble Alto.webp"
                     alt="Ñuble Alto"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${hoveredExperience === 'alto' ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${hoveredExperience === 'alto' ? 'opacity-100 animate-subtle-zoom' : 'opacity-0 scale-100'}`}
                   />
 
                   {/* Color overlay when NOT hovering - gives presence to the box */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-[#FF6B35]/25 to-[#FF6B35]/15 backdrop-blur-sm transition-opacity duration-700 ${hoveredExperience === 'alto' ? 'opacity-0' : 'opacity-100'}`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-[#FF6B35]/20 to-[#FF6B35]/10 backdrop-blur-[2px] transition-opacity duration-700 ${hoveredExperience === 'alto' ? 'opacity-0' : 'opacity-100'}`} />
 
-                  {/* Badge */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-[#FF6B35] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base shadow-xl backdrop-blur-sm border-2 border-white/30 z-10">
+                  {/* Badge Clase */}
+                  <div className="absolute top-3 right-3 bg-[#FF6B35]/90 text-white px-3 py-1.5 rounded-md font-bold text-xs shadow-lg backdrop-blur-sm border border-white/40 z-10">
                     Clase III-IV
                   </div>
 
-                  {/* Subtle dark gradient overlay on hover - lets image show clearly */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/60 via-grafito/20 to-transparent transition-opacity duration-700 ${hoveredExperience === 'alto' ? 'opacity-100' : 'opacity-0'}`} />
+                  {/* Lighter dark gradient overlay on hover - clear image visibility */}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-grafito/35 via-transparent to-transparent transition-opacity duration-700 ${hoveredExperience === 'alto' ? 'opacity-100' : 'opacity-0'}`} />
 
-                  {/* Title and description - moves up on hover */}
-                  <div className={`absolute left-0 right-0 p-6 z-10 transition-all duration-700 ${hoveredExperience === 'alto' ? 'top-6' : 'top-1/2'}`}>
-                    <h3 className="font-montserrat font-black text-3xl text-white mb-2 drop-shadow-2xl">
+                  {/* Title only on hover - description hidden */}
+                  <div className={`absolute left-0 right-0 px-6 py-4 pr-20 z-10 transition-all duration-700 ease-out ${hoveredExperience === 'alto' ? 'bottom-6 opacity-100' : 'top-1/2 -translate-y-1/2 opacity-100'}`}>
+                    <h3 className={`font-montserrat font-black text-2xl sm:text-3xl text-white mb-2 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] leading-tight transition-all duration-700 ease-out`}>
                       Ñuble Alto
                     </h3>
-                    <p className="text-white text-base mb-4 drop-shadow-xl font-medium">
+                    <p className={`text-white text-xs sm:text-sm leading-relaxed drop-shadow-xl font-medium transition-all duration-700 ease-out ${hoveredExperience === 'alto' ? 'opacity-0 max-h-0' : 'opacity-100 max-h-20'}`}>
                       Para aventureros experimentados. Máxima adrenalina y emoción con snack incluido.
                     </p>
                   </div>
@@ -638,41 +726,41 @@ export default function Home() {
 
                 {/* Info Section - Bottom Half - White Background */}
                 <div className="bg-white p-6 rounded-b-3xl">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-[#FF6B35]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-[#FF6B35]" />
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-4 mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4 text-[#FF6B35]" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">8 km</div>
-                        <div className="text-xs text-grafito/60">Recorrido</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">8 km</div>
+                        <div className="text-[11px] text-grafito/60">Recorrido</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-[#FF6B35]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Users className="w-5 h-5 text-[#FF6B35]" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Users className="w-4 h-4 text-[#FF6B35]" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">16+ años</div>
-                        <div className="text-xs text-grafito/60">Edad mínima</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">16+ años</div>
+                        <div className="text-[11px] text-grafito/60">Edad mínima</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-[#FF6B35]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Star className="w-5 h-5 text-[#FF6B35]" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Clock className="w-4 h-4 text-[#FF6B35]" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Todo el año</div>
-                        <div className="text-xs text-grafito/60">Temporada</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Todo el año</div>
+                        <div className="text-[11px] text-grafito/60">Temporada</div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-10 h-10 bg-[#FF6B35]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Shield className="w-5 h-5 text-[#FF6B35]" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-4 h-4 text-[#FF6B35]" />
                       </div>
                       <div>
-                        <div className="font-montserrat font-bold text-grafito text-base">Media-Alta</div>
-                        <div className="text-xs text-grafito/60">Dificultad</div>
+                        <div className="font-montserrat font-bold text-grafito text-sm">Media-Alta</div>
+                        <div className="text-[11px] text-grafito/60">Dificultad</div>
                       </div>
                     </div>
                   </div>
@@ -692,6 +780,7 @@ export default function Home() {
                       </a>
                     </Button>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -747,8 +836,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Mapa de Rutas de Rafting */}
+        {/* <RaftingMap /> */}
+
         {/* Actividades Extras */}
-        <section id="actividades-extras" className="relative py-32">
+        <section ref={actividadesExtrasRef} id="actividades-extras" className="relative py-32">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16 max-w-4xl mx-auto">
               <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30">
@@ -870,7 +962,7 @@ export default function Home() {
         </section>
 
         {/* Empresas, Colegios e Instituciones */}
-        <section id="empresas" className="relative py-32 overflow-hidden">
+        <section ref={empresasRef} id="empresas" className="relative py-32 overflow-hidden bg-gradient-to-b from-grafito via-grafito/95 to-grafito">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               {/* Header */}
@@ -881,15 +973,17 @@ export default function Home() {
                 <h2 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                   Empresas, Colegios e Instituciones
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                  Programas diseñados para grupos corporativos, instituciones educativas y organizaciones
+                <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed">
+                  <span className="inline-block bg-grafito/40 px-4 py-2 rounded-lg backdrop-blur-sm">
+                    Programas diseñados para grupos corporativos, instituciones educativas y organizaciones
+                  </span>
                 </p>
               </div>
 
               {/* Two Main Options */}
               <div className="grid lg:grid-cols-2 gap-8 mb-16">
                 {/* Salidas Recreativas */}
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/40 hover:border-rio transition-all duration-300 flex flex-col shadow-2xl">
+                <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/40 hover:border-rio hover:shadow-[0_0_40px_rgba(10,132,174,0.3)] transition-all duration-300 flex flex-col shadow-2xl">
                   <div className="flex items-start gap-4 mb-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-rio to-bosque rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Users className="w-8 h-8 text-white" />
@@ -898,11 +992,11 @@ export default function Home() {
                       <h3 className="font-montserrat font-black text-3xl text-white mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
                         Salidas Recreativas
                       </h3>
-                      <p className="text-white text-lg drop-shadow-lg font-medium">Paseos y celebraciones grupales</p>
+                      <p className="text-white text-lg font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Paseos y celebraciones grupales</p>
                     </div>
                   </div>
 
-                  <p className="text-white/95 text-base mb-6 leading-relaxed drop-shadow-lg font-medium">
+                  <p className="text-white text-base mb-6 leading-relaxed font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>
                     Experiencias outdoor ideales para celebraciones, aniversarios de empresa y eventos recreativos con tu equipo.
                   </p>
 
@@ -911,19 +1005,19 @@ export default function Home() {
                       <div className="w-6 h-6 bg-rio rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-medium">Rafting para grupos corporativos</span>
+                      <span className="text-base font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Rafting para grupos corporativos</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-rio rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-medium">Actividades de integración al aire libre</span>
+                      <span className="text-base font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Actividades de integración al aire libre</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-rio rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-medium">Celebraciones y eventos especiales</span>
+                      <span className="text-base font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Celebraciones y eventos especiales</span>
                     </li>
                   </ul>
 
@@ -938,7 +1032,7 @@ export default function Home() {
                 </div>
 
                 {/* Talleres Corporativos */}
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 border-2 border-bosque hover:border-bosque/70 transition-all duration-300 relative flex flex-col shadow-2xl">
+                <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-bosque/60 hover:border-bosque hover:shadow-[0_0_40px_rgba(45,134,89,0.3)] transition-all duration-300 relative flex flex-col shadow-2xl">
                   {/* Badge destacado */}
                   <div className="absolute -top-3 right-4 sm:-top-4 sm:right-8 bg-gradient-to-r from-bosque to-[#2d8659] text-white px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-bold text-xs sm:text-sm shadow-xl border-2 border-white/30">
                     ✓ Con presupuesto aprobado
@@ -952,12 +1046,12 @@ export default function Home() {
                       <h3 className="font-montserrat font-black text-3xl text-white mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
                         Talleres Corporativos
                       </h3>
-                      <p className="text-white text-lg drop-shadow-lg font-medium">Capacitación y desarrollo outdoor</p>
+                      <p className="text-white text-lg font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Capacitación y desarrollo outdoor</p>
                     </div>
                   </div>
 
-                  <p className="text-white/95 text-base mb-6 leading-relaxed drop-shadow-lg font-medium">
-                    Programas formativos que combinan naturaleza y aprendizaje. <span className="font-bold text-white bg-bosque/40 px-2 py-0.5 rounded">Categorizados como talleres y capacitaciones</span> para facilitar su aprobación presupuestaria.
+                  <p className="text-white text-base mb-6 leading-relaxed font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>
+                    Programas formativos que combinan naturaleza y aprendizaje. <span className="font-bold text-white bg-bosque/70 px-2 py-0.5 rounded shadow-lg">Categorizados como talleres y capacitaciones</span> para facilitar su aprobación presupuestaria.
                   </p>
 
                   <ul className="space-y-4 mb-8 flex-grow">
@@ -965,31 +1059,31 @@ export default function Home() {
                       <div className="w-6 h-6 bg-bosque rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-semibold">Talleres de liderazgo outdoor</span>
+                      <span className="text-base font-semibold" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Talleres de liderazgo outdoor</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-bosque rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-semibold">Team building con metodología</span>
+                      <span className="text-base font-semibold" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Team building con metodología</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-bosque rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-semibold">Talleres recreativos formativos</span>
+                      <span className="text-base font-semibold" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Talleres recreativos formativos</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-bosque rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-semibold">Reuniones de trabajo en naturaleza</span>
+                      <span className="text-base font-semibold" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Reuniones de trabajo en naturaleza</span>
                     </li>
                     <li className="flex items-start gap-3 text-white">
                       <div className="w-6 h-6 bg-bosque rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base font-semibold">Capacitaciones experienciales</span>
+                      <span className="text-base font-semibold" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Capacitaciones experienciales</span>
                     </li>
                   </ul>
 
@@ -1007,29 +1101,29 @@ export default function Home() {
               {/* Institutional Programs */}
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Colegios */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/30 hover:border-rio/50 hover:shadow-[0_0_30px_rgba(10,132,174,0.2)] transition-all shadow-xl">
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-rio to-bosque rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-14 h-14 bg-gradient-to-br from-rio to-bosque rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-montserrat font-bold text-white text-xl mb-2 drop-shadow-lg">Colegios e Instituciones Educativas</h3>
-                      <p className="text-white/80 drop-shadow-lg">Salidas educativas seguras, programas de educación ambiental y actividades deportivas para estudiantes</p>
+                      <h3 className="font-montserrat font-bold text-white text-xl mb-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Colegios e Instituciones Educativas</h3>
+                      <p className="text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Salidas educativas seguras, programas de educación ambiental y actividades deportivas para estudiantes</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Instituciones */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/30 hover:border-bosque/50 hover:shadow-[0_0_30px_rgba(45,134,89,0.2)] transition-all shadow-xl">
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-rio to-bosque rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-14 h-14 bg-gradient-to-br from-rio to-bosque rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Shield className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-montserrat font-bold text-white text-xl mb-2 drop-shadow-lg">Instituciones Públicas y Privadas</h3>
-                      <p className="text-white/80 drop-shadow-lg">Programas especiales para organizaciones, ONGs y entidades gubernamentales con enfoque en sustentabilidad</p>
+                      <h3 className="font-montserrat font-bold text-white text-xl mb-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Instituciones Públicas y Privadas</h3>
+                      <p className="text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)' }}>Programas especiales para organizaciones, ONGs y entidades gubernamentales con enfoque en sustentabilidad</p>
                     </div>
                   </div>
                 </div>
@@ -1056,15 +1150,15 @@ export default function Home() {
             <div className="max-w-7xl mx-auto">
               <Gallery
                 images={[
-                  { url: "/images/1.webp", alt: "Rafting en Río Ñuble - Aventura 1" },
-                  { url: "/images/2.webp", alt: "Rafting en Río Ñuble - Aventura 2" },
-                  { url: "/images/3.webp", alt: "Rafting en Río Ñuble - Aventura 3" },
-                  { url: "/images/20a.webp", alt: "20 Años de Aventura en el Río Ñuble" },
-                  { url: "/images/Rafting Familiar.webp", alt: "Rafting Familiar en Ñuble Bajo" },
-                  { url: "/images/Rafting Ñuble Alto.webp", alt: "Rafting Ñuble Alto - Adrenalina Pura" },
-                  { url: "/images/hero-rafting.webp", alt: "Hero Rafting - Outdoor Ñuble" },
-                  { url: "/images/contacto.webp", alt: "Contacto - Outdoor Ñuble" },
-                  { url: "/images/freepik__candid-photography-with-natural-textures-and-highl__34529.webp", alt: "Rafting Profesional en Río Ñuble" },
+                  { url: "/images/gallery/galeria/webp/freepik__mejor-esta-imagen-de-cabalgatas-de-estas-personas-__11744.webp", alt: "Cabalgatas en la naturaleza - Outdoor Ñuble" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11745.webp", alt: "Aventura en Río Ñuble" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11747.webp", alt: "Rafting en Río Ñuble" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11748.webp", alt: "Experiencias al aire libre" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11749.webp", alt: "Aventura y naturaleza" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11750.webp", alt: "Turismo aventura en Ñuble" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11751.webp", alt: "Outdoor Ñuble - Aventuras" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11752.webp", alt: "Experiencias naturales" },
+                  { url: "/images/gallery/galeria/webp/freepik__candid-photography-with-natural-textures-and-highl__11753.webp", alt: "Rafting profesional en Río Ñuble" },
                 ]}
               />
             </div>
@@ -1072,7 +1166,7 @@ export default function Home() {
         </section>
 
         {/* Testimonios */}
-        <section id="testimonios" className="relative py-24 sm:py-32 overflow-hidden">
+        <section ref={testimoniosRef} id="testimonios" className="relative py-24 sm:py-32 overflow-hidden">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16 max-w-4xl mx-auto">
               <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30">
@@ -1146,8 +1240,8 @@ export default function Home() {
                 <div className="inline-block bg-white/30 backdrop-blur-md px-5 py-2.5 rounded-full mb-6 border-2 border-white/50 shadow-xl">
                   <span className="font-montserrat font-bold text-white text-sm uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Sobre Nosotros</span>
                 </div>
-                <h2 className="font-montserrat font-black text-5xl md:text-7xl text-white mb-8 drop-shadow-[0_6px_20px_rgba(0,0,0,0.9)]">
-                  Empresa Familiar <span className="text-rio">con Historia</span>
+                <h2 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-8 drop-shadow-[0_6px_20px_rgba(0,0,0,0.9)] leading-tight">
+                  Empresa Familiar <span className="text-white/95 drop-shadow-[0_4px_12px_rgba(10,132,174,0.8)]">con Historia</span>
                 </h2>
               </div>
 
@@ -1226,21 +1320,21 @@ export default function Home() {
 
               {/* Nuestro Equipo */}
               <div className="mb-16">
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white text-center mb-16">
+                <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white text-center mb-16 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                   Nuestro Equipo
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-12 md:gap-8">
                   {/* Team Member 1 */}
-                  <div className="flex flex-col items-center group">
+                  <div className="flex flex-col items-center group bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:border-rio/40 transition-all duration-300 hover:scale-105 shadow-xl">
                     <div className="relative mb-6">
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-rio to-bosque rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
 
                       {/* Image circle */}
-                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 group-hover:border-rio transition-all duration-300 shadow-2xl">
+                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/50 group-hover:border-rio transition-all duration-300 shadow-2xl">
                         <img
-                          src="/images/equipo1.webp"
+                          src="/images/equipo/freepik__crea-la-imagen-de-una-persona-de-un-guia-de-rio-de__94123.webp"
                           alt="Guía Outdoor Ñuble"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
@@ -1250,24 +1344,24 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2">
-                      Nombre Guía
+                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+                      Juan Pablo
                     </h4>
-                    <p className="text-white/80 text-center text-lg">
+                    <p className="text-white text-center text-lg font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                       Guía Certificado
                     </p>
                   </div>
 
                   {/* Team Member 2 */}
-                  <div className="flex flex-col items-center group">
+                  <div className="flex flex-col items-center group bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:border-bosque/40 transition-all duration-300 hover:scale-105 shadow-xl">
                     <div className="relative mb-6">
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-rio to-bosque rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
 
                       {/* Image circle */}
-                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 group-hover:border-bosque transition-all duration-300 shadow-2xl">
+                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/50 group-hover:border-bosque transition-all duration-300 shadow-2xl">
                         <img
-                          src="/images/equipo2.webp"
+                          src="/images/equipo/freepik__crea-un-persdonaje-de-kayak-mujer-haz-un-acercamie__94127.webp"
                           alt="Guía Outdoor Ñuble"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
@@ -1277,24 +1371,24 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2">
-                      Nombre Guía
+                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+                      Fabiola
                     </h4>
-                    <p className="text-white/80 text-center text-lg">
-                      Guía Certificado
+                    <p className="text-white text-center text-lg font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                      Guía Certificada
                     </p>
                   </div>
 
                   {/* Team Member 3 */}
-                  <div className="flex flex-col items-center group">
+                  <div className="flex flex-col items-center group bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:border-rio/40 transition-all duration-300 hover:scale-105 shadow-xl">
                     <div className="relative mb-6">
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-rio to-bosque rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
 
                       {/* Image circle */}
-                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 group-hover:border-rio transition-all duration-300 shadow-2xl">
+                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/50 group-hover:border-rio transition-all duration-300 shadow-2xl">
                         <img
-                          src="/images/equipo3.webp"
+                          src="/images/equipo/freepik__crea-la-imagen-de-una-persona-de-un-guia-de-rio-de__94130.webp"
                           alt="Guía Outdoor Ñuble"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
@@ -1304,10 +1398,10 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2">
-                      Nombre Guía
+                    <h4 className="font-montserrat font-bold text-2xl text-white mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+                      Francisco
                     </h4>
-                    <p className="text-white/80 text-center text-lg">
+                    <p className="text-white text-center text-lg font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                       Guía Certificado
                     </p>
                   </div>
@@ -1336,105 +1430,110 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Gradient transition to next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent to-grafito pointer-events-none"></div>
+          {/* Difuminado suave para transición */}
+          <div className="absolute bottom-0 left-0 right-0 h-96 pointer-events-none z-10">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-grafito/50 to-grafito"></div>
+          </div>
         </section>
 
         {/* CTA Final + Footer - Banner Style */}
         <section id="contacto" className="relative min-h-screen flex flex-col overflow-hidden bg-grafito">
-          {/* Background Image - Full Section */}
+          {/* Background Image - Full Section with smooth blend */}
           <div className="absolute inset-0">
-            <img
-              src="/images/contacto.webp"
-              alt="Contacto Outdoor Ñuble"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-            {/* Gradient overlay - Transición suave desde negro */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img
+                src="/images/Fondos/freepik__aleja-esta-imagen-dale-mas-espacio-al-cielo-mas-ai__95468_11zon.webp"
+                alt="Contacto Outdoor Ñuble"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              />
+            </div>
+            {/* Gradiente de mezcla superior ultra suave */}
             <div className="absolute inset-0 bg-gradient-to-b from-grafito via-transparent to-grafito/80"></div>
+            <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-grafito/100 via-grafito/60 via-grafito/30 to-transparent"></div>
           </div>
 
-          {/* Contact Content */}
-          <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 text-center flex-grow flex items-center">
+          {/* Contact Content - Compacto */}
+          <div className="relative z-10 container mx-auto px-6 pt-48 sm:pt-56 md:pt-64 pb-16 text-center flex-grow flex items-start">
             <div className="max-w-5xl mx-auto w-full">
-              <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30">
-                <span className="font-montserrat font-bold text-white text-sm uppercase tracking-wider drop-shadow-lg">Contáctanos</span>
+
+              {/* Header compacto */}
+              <div className="mb-8">
+                <h2 className="font-montserrat font-black text-4xl sm:text-5xl md:text-6xl text-white mb-3 leading-tight drop-shadow-[0_8px_20px_rgba(0,0,0,0.9)]">
+                  ¿Listo para tu Próxima Aventura?
+                </h2>
+                <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto font-light" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.8)' }}>
+                  Reserva ahora y vive una experiencia inolvidable
+                </p>
               </div>
 
-              <h2 className="font-montserrat font-black text-5xl md:text-7xl text-white mb-8 leading-tight drop-shadow-[0_6px_16px_rgba(0,0,0,0.9)]">
-                ¿Listo para tu<br/>Próxima Aventura?
-              </h2>
-              <p className="text-xl md:text-2xl text-white mb-16 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                Reserva ahora y vive una experiencia inolvidable en el río Ñuble
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+              {/* CTA Principal - Compacto */}
+              <div>
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-14 py-9 text-xl rounded-full shadow-[0_20px_60px_rgba(10,132,174,0.4)] hover:shadow-[0_25px_70px_rgba(10,132,174,0.6)] hover:scale-110 transition-all font-bold border-2 border-white/40"
+                  className="bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white px-10 py-5 text-lg rounded-full shadow-[0_25px_70px_rgba(10,132,174,0.5)] hover:shadow-[0_30px_80px_rgba(10,132,174,0.7)] hover:scale-105 transition-all duration-300 font-bold border-2 border-white/50"
                 >
-                  <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer">
+                  <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
                     Reservar por WhatsApp
                   </a>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-3 border-white text-white bg-white/20 hover:bg-white hover:text-bosque px-14 py-9 text-xl rounded-full backdrop-blur-md transition-all font-bold hover:scale-110 shadow-[0_20px_60px_rgba(255,255,255,0.2)]"
-                >
-                  <a href="mailto:contacto@outdoornuble.cl">
-                    Enviar Email
-                  </a>
-                </Button>
               </div>
 
-              <div className="grid sm:grid-cols-3 gap-8 text-white max-w-4xl mx-auto">
-                <div className="bg-white/15 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/30 hover:bg-white/20 hover:scale-105 transition-all shadow-xl">
-                  <MapPin className="w-8 h-8 mx-auto mb-3 text-rio drop-shadow-lg" />
-                  <div className="text-xs opacity-90 uppercase tracking-wider mb-2 drop-shadow-lg font-bold">Ubicación</div>
-                  <div className="font-montserrat font-bold text-lg drop-shadow-lg">San Fabián de Alico</div>
-                  <div className="text-sm opacity-80 drop-shadow-lg">Región de Ñuble</div>
-                </div>
-                <div className="bg-white/15 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/30 hover:bg-white/20 hover:scale-105 transition-all shadow-xl">
-                  <svg className="w-8 h-8 mx-auto mb-3 text-rio drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* Espaciador para ver la imagen */}
+              <div className="h-72 sm:h-80 md:h-96"></div>
+
+              {/* Información de contacto - Más separadas */}
+              <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 text-white max-w-4xl mx-auto">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=San+Fabián+de+Alico,+Ñuble,+Chile" target="_blank" rel="noopener noreferrer" className="group bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all shadow-lg">
+                  <MapPin className="w-6 h-6 mx-auto mb-2 text-rio group-hover:scale-110 transition-transform" />
+                  <div className="text-[9px] text-white/70 uppercase tracking-widest mb-1 font-semibold">Ubicación</div>
+                  <div className="font-montserrat font-bold text-sm">San Fabián de Alico</div>
+                  <div className="text-[10px] text-white/70">Región de Ñuble</div>
+                </a>
+
+                <a href={getWhatsAppLink("+56932344214", getDefaultRaftingMessage())} target="_blank" rel="noopener noreferrer" className="group bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all shadow-lg">
+                  <svg className="w-6 h-6 mx-auto mb-2 text-rio group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <div className="text-xs opacity-90 uppercase tracking-wider mb-2 drop-shadow-lg font-bold">Teléfono</div>
-                  <div className="font-montserrat font-bold text-lg drop-shadow-lg">+56 9 3234 4214</div>
-                </div>
-                <div className="bg-white/15 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/30 hover:bg-white/20 hover:scale-105 transition-all shadow-xl">
-                  <svg className="w-8 h-8 mx-auto mb-3 text-rio drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="text-[9px] text-white/70 uppercase tracking-widest mb-1 font-semibold">WhatsApp</div>
+                  <div className="font-montserrat font-bold text-sm">+56 9 3234 4214</div>
+                </a>
+
+                <a href="mailto:contacto@outdoornuble.cl" className="group bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all shadow-lg">
+                  <svg className="w-6 h-6 mx-auto mb-2 text-rio group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <div className="text-xs opacity-90 uppercase tracking-wider mb-2 drop-shadow-lg font-bold">Email</div>
-                  <div className="font-montserrat font-bold text-base drop-shadow-lg">contacto@outdoornuble.cl</div>
-                </div>
+                  <div className="text-[9px] text-white/70 uppercase tracking-widest mb-1 font-semibold">Email</div>
+                  <div className="font-montserrat font-bold text-xs">contacto@outdoornuble.cl</div>
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Footer - Overlaid on background */}
-          <footer className="relative z-10 bg-transparent backdrop-blur-md py-8 border-t border-white/20 mt-auto">
+          {/* Footer - Minimalista */}
+          <footer className="relative z-10 bg-grafito/30 backdrop-blur-md py-12 border-t border-white/10 mt-auto">
             <div className="container mx-auto px-6">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-3">
-                  <img src="/images/isotipo.svg" alt="Outdoor Ñuble" className="h-10 w-auto" />
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex items-center gap-4">
+                  <img src="/images/isotipo.svg" alt="Outdoor Ñuble" className="h-12 w-auto opacity-90" />
                   <div>
-                    <div className="font-montserrat font-bold text-white drop-shadow-lg">OUTDOOR ÑUBLE</div>
-                    <div className="text-white/80 text-sm drop-shadow-lg">Tu próxima aventura</div>
+                    <div className="font-montserrat font-black text-white text-lg tracking-wide" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>OUTDOOR ÑUBLE</div>
+                    <div className="text-white/70 text-sm font-light">Tu próxima aventura</div>
                   </div>
                 </div>
 
-                <div className="text-white/80 text-sm drop-shadow-lg">
-                  © 2024 Outdoor Ñuble. Todos los derechos reservados.
+                <div className="text-white/60 text-sm font-light">
+                  © 2025 Outdoor Ñuble. Todos los derechos reservados.
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <a href="#" className="text-white/70 hover:text-white transition-colors drop-shadow-lg hover:scale-110 duration-300">
+                <div className="flex items-center gap-5">
+                  <a href="#" className="text-white/60 hover:text-white transition-all hover:scale-125 duration-300">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </a>
-                  <a href="#" className="text-white/70 hover:text-white transition-colors drop-shadow-lg hover:scale-110 duration-300">
+                  <a href="#" className="text-white/60 hover:text-white transition-all hover:scale-125 duration-300">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                   </a>
                 </div>

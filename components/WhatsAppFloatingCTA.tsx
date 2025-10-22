@@ -25,7 +25,7 @@ export default function WhatsAppFloatingCTA({ phone }: WhatsAppFloatingCTAProps)
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 group"
+      className="fixed bottom-32 right-6 z-50 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
