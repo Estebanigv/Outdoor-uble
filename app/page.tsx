@@ -221,7 +221,7 @@ export default function Home() {
 
         {/* Image 5 - Empresas, Colegios e Instituciones */}
         <img
-          src="/images/Fondos/freepik__genera-una-toma-senital-de-esta-imagen-vista-desde__94121.webp"
+          src="/images/Fondos/freepik__llevala-a-foramto__70857_11zon.webp"
           alt="Empresas, Colegios e Instituciones - Outdoor Ñuble"
           className="absolute w-full h-full object-cover transition-opacity duration-700"
           style={{
@@ -959,10 +959,11 @@ export default function Home() {
               </div>
             </div>
           </div>
+
         </section>
 
         {/* Empresas, Colegios e Instituciones */}
-        <section ref={empresasRef} id="empresas" className="relative py-32 overflow-hidden bg-gradient-to-b from-grafito via-grafito/95 to-grafito">
+        <section ref={empresasRef} id="empresas" className="relative py-32 overflow-hidden">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               {/* Header */}
@@ -973,10 +974,8 @@ export default function Home() {
                 <h2 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                   Empresas, Colegios e Instituciones
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed">
-                  <span className="inline-block bg-grafito/40 px-4 py-2 rounded-lg backdrop-blur-sm">
-                    Programas diseñados para grupos corporativos, instituciones educativas y organizaciones
-                  </span>
+                <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                  Programas diseñados para grupos corporativos, instituciones educativas y organizaciones
                 </p>
               </div>
 
@@ -1240,8 +1239,8 @@ export default function Home() {
                 <div className="inline-block bg-white/30 backdrop-blur-md px-5 py-2.5 rounded-full mb-6 border-2 border-white/50 shadow-xl">
                   <span className="font-montserrat font-bold text-white text-sm uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Sobre Nosotros</span>
                 </div>
-                <h2 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-8 drop-shadow-[0_6px_20px_rgba(0,0,0,0.9)] leading-tight">
-                  Empresa Familiar <span className="text-white/95 drop-shadow-[0_4px_12px_rgba(10,132,174,0.8)]">con Historia</span>
+                <h2 className="font-montserrat font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                  Empresa Familiar <span className="text-white/95">con Historia</span>
                 </h2>
               </div>
 
@@ -1259,59 +1258,59 @@ export default function Home() {
               {/* Content Cards Below Image */}
               <div className="grid md:grid-cols-3 gap-8 mb-16">
                 {/* Card 1 */}
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
+                <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
                   <div className="w-16 h-16 bg-gradient-to-br from-rio to-bosque rounded-2xl flex items-center justify-center mb-6 shadow-xl">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-montserrat font-bold text-2xl text-white mb-4">Seguridad Certificada</h3>
-                  <p className="text-white/90 leading-relaxed">
+                  <h3 className="font-montserrat font-bold text-xl sm:text-2xl text-white mb-3 sm:mb-4">Seguridad Certificada</h3>
+                  <p className="text-white text-sm sm:text-base leading-relaxed">
                     Equipos y protocolos internacionales de la más alta calidad para tu tranquilidad.
                   </p>
                 </div>
 
                 {/* Card 2 */}
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
+                <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
                   <div className="w-16 h-16 bg-gradient-to-br from-bosque to-rio rounded-2xl flex items-center justify-center mb-6 shadow-xl">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-montserrat font-bold text-2xl text-white mb-4">Turismo Sustentable</h3>
-                  <p className="text-white/90 leading-relaxed">
+                  <h3 className="font-montserrat font-bold text-xl sm:text-2xl text-white mb-3 sm:mb-4">Turismo Sustentable</h3>
+                  <p className="text-white text-sm sm:text-base leading-relaxed">
                     Compromiso real con la conservación y protección del medio ambiente.
                   </p>
                 </div>
 
                 {/* Card 3 */}
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
+                <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-2 border-white/30 shadow-2xl hover:scale-105 transition-all">
                   <div className="w-16 h-16 bg-gradient-to-br from-rio to-bosque rounded-2xl flex items-center justify-center mb-6 shadow-xl">
                     <Award className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-montserrat font-bold text-2xl text-white mb-4">Empresa Familiar</h3>
-                  <p className="text-white/90 leading-relaxed">
+                  <h3 className="font-montserrat font-bold text-xl sm:text-2xl text-white mb-3 sm:mb-4">Empresa Familiar</h3>
+                  <p className="text-white text-sm sm:text-base leading-relaxed">
                     Más de 20 años de pasión y conocimiento local transmitido por generaciones.
                   </p>
                 </div>
               </div>
 
               {/* Text Content */}
-              <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 border-2 border-white/30 shadow-2xl mb-16">
-                <p className="text-2xl text-white/95 leading-relaxed font-light text-center mb-8">
+              <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 sm:p-8 md:p-12 border-2 border-white/30 shadow-2xl mb-16">
+                <p className="text-lg sm:text-xl md:text-2xl text-white leading-relaxed font-light text-center mb-6 sm:mb-8">
                   Somos una <span className="font-bold text-rio">empresa familiar</span> con más de dos décadas de experiencia guiando aventureros en San Fabián de Alico, en el corazón de la <span className="font-bold text-bosque">Reserva de la Biósfera declarada por la UNESCO</span>.
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+                <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
                   <div>
-                    <h3 className="font-montserrat font-black text-3xl text-white mb-4">
+                    <h3 className="font-montserrat font-black text-2xl sm:text-3xl text-white mb-3 sm:mb-4">
                       Nuestro Compromiso
                     </h3>
-                    <p className="text-xl text-white/90 leading-relaxed font-light">
+                    <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-light">
                       Ofrecer experiencias memorables y seguras con conocimiento local, respetando y protegiendo nuestro entorno natural.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-montserrat font-black text-3xl text-white mb-4">
+                    <h3 className="font-montserrat font-black text-2xl sm:text-3xl text-white mb-3 sm:mb-4">
                       Nuestra Garantía
                     </h3>
-                    <p className="text-xl text-white/90 leading-relaxed font-light">
+                    <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-light">
                       Con guías certificados y equipamiento de primera, garantizamos aventuras que combinan adrenalina y seguridad.
                     </p>
                   </div>
@@ -1514,7 +1513,7 @@ export default function Home() {
           </div>
 
           {/* Footer - Minimalista */}
-          <footer className="relative z-10 bg-grafito/30 backdrop-blur-md py-12 border-t border-white/10 mt-auto">
+          <footer className="relative z-10 bg-grafito/15 backdrop-blur-sm py-12 border-t border-white/10 mt-auto">
             <div className="container mx-auto px-6">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="flex items-center gap-4">
