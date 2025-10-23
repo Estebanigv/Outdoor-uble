@@ -92,7 +92,7 @@ export default function SiteFooter({ contact }: SiteFooterProps) {
             <h3 className="font-display text-xl font-bold mb-6">Enlaces Rápidos</h3>
             <nav className="space-y-3">
               <a
-                href="#experiencia"
+                href="#experiencias"
                 className="block text-white/80 hover:text-rio transition-colors hover:translate-x-1 transform duration-200"
               >
                 → Experiencia
@@ -102,12 +102,6 @@ export default function SiteFooter({ contact }: SiteFooterProps) {
                 className="block text-white/80 hover:text-rio transition-colors hover:translate-x-1 transform duration-200"
               >
                 → Galería
-              </a>
-              <a
-                href="#faq"
-                className="block text-white/80 hover:text-rio transition-colors hover:translate-x-1 transform duration-200"
-              >
-                → Preguntas Frecuentes
               </a>
             </nav>
           </div>

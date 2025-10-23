@@ -23,9 +23,8 @@ export default function SiteHeader({ phone }: SiteHeaderProps) {
   }, []);
 
   const menuItems = [
-    { href: "#experiencia", label: "Experiencia", isRoute: false },
+    { href: "#experiencias", label: "Experiencia", isRoute: false },
     { href: "#galeria", label: "Galería", isRoute: false },
-    { href: "#faq", label: "FAQ", isRoute: false },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isRoute: boolean) => {

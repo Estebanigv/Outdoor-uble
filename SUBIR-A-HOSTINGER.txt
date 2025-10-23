@@ -1,0 +1,164 @@
+═══════════════════════════════════════════════════════════════════════
+  INSTRUCCIONES PARA SUBIR TU SITIO A HOSTINGER
+═══════════════════════════════════════════════════════════════════════
+
+✅ TU SITIO ESTÁ 100% LISTO PARA HOSTINGER
+
+📁 UBICACIÓN DE LOS ARCHIVOS:
+   E:\Proyectos Webs\Outdoor Ñuble\outdoor-nuble\out\
+
+📊 ARCHIVOS LISTOS: 78 archivos totales
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 1: ACCEDE A HOSTINGER
+═══════════════════════════════════════════════════════════════════════
+
+1. Abre tu navegador
+2. Ve a: https://hpanel.hostinger.com/
+3. Inicia sesión con tu cuenta de Hostinger
+4. Selecciona tu dominio: outdoornuble.cl
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 2: ABRE EL ADMINISTRADOR DE ARCHIVOS
+═══════════════════════════════════════════════════════════════════════
+
+1. En el panel de Hostinger, busca "Administrador de archivos"
+2. Haz clic para abrirlo
+3. Navega a la carpeta: public_html
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 3: LIMPIA LA CARPETA PUBLIC_HTML (SI HAY ARCHIVOS ANTIGUOS)
+═══════════════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Solo elimina si hay archivos antiguos
+
+1. Selecciona TODOS los archivos en public_html
+2. EXCEPTO: .htaccess (si existe, NO lo borres)
+3. Haz clic derecho → Eliminar
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 4: SUBE TUS ARCHIVOS
+═══════════════════════════════════════════════════════════════════════
+
+1. En tu computadora, abre la carpeta:
+   E:\Proyectos Webs\Outdoor Ñuble\outdoor-nuble\out\
+
+2. Selecciona TODO el contenido de esta carpeta:
+   ✓ Carpeta _next
+   ✓ Carpeta images
+   ✓ Archivo index.html
+   ✓ Archivo favicon.ico
+   ✓ Archivo favicon.png
+   ✓ Archivo sitemap.xml
+   ✓ Archivo robots.txt
+   ✓ Y TODOS los demás archivos
+
+3. Arrastra y suelta TODO a public_html en Hostinger
+
+4. Espera a que termine la carga (puede tomar 2-5 minutos)
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 5: VERIFICA QUE TODO ESTÉ BIEN
+═══════════════════════════════════════════════════════════════════════
+
+1. En public_html deberías ver:
+   ✓ Carpeta: _next
+   ✓ Carpeta: images
+   ✓ Archivo: index.html
+   ✓ Archivo: favicon.ico
+   ✓ Archivo: favicon.png
+   ✓ Archivo: sitemap.xml
+   ✓ Archivo: robots.txt
+   ✓ Y más archivos
+
+2. Verifica los permisos (deben ser 644 para archivos, 755 para carpetas)
+
+═══════════════════════════════════════════════════════════════════════
+  PASO 6: PRUEBA TU SITIO
+═══════════════════════════════════════════════════════════════════════
+
+1. Abre tu navegador
+2. Ve a: https://www.outdoornuble.cl
+3. El sitio debe cargar completamente
+
+✅ VERIFICA QUE FUNCIONE:
+   ✓ Página principal carga correctamente
+   ✓ Favicon aparece en la pestaña del navegador
+   ✓ Imágenes se ven bien
+   ✓ Botón "Contáctanos" abre WhatsApp
+   ✓ Botón flotante de WhatsApp funciona
+   ✓ Links de Facebook e Instagram en el footer funcionan
+   ✓ Navegación por secciones (Experiencia, Galería, FAQ) funciona
+   ✓ El sitio se ve bien en móvil (prueba en tu celular)
+
+═══════════════════════════════════════════════════════════════════════
+  ✅ CARACTERÍSTICAS INCLUIDAS EN TU SITIO
+═══════════════════════════════════════════════════════════════════════
+
+🎨 DISEÑO:
+   ✓ Single page (una sola página)
+   ✓ 100% Responsive (móvil, tablet, desktop)
+   ✓ Animaciones suaves
+   ✓ Diseño moderno y profesional
+
+📱 FUNCIONALIDADES:
+   ✓ Botón flotante de WhatsApp
+   ✓ Navegación suave entre secciones
+   ✓ Galería de fotos
+   ✓ Preguntas frecuentes (FAQ)
+   ✓ Links a redes sociales
+
+🔍 SEO OPTIMIZADO:
+   ✓ Meta tags optimizados
+   ✓ Structured Data (JSON-LD)
+   ✓ Sitemap.xml
+   ✓ Robots.txt
+   ✓ OpenGraph para redes sociales
+   ✓ Twitter Cards
+   ✓ Canonical URL
+
+🎯 BRANDING:
+   ✓ Favicon personalizado (isotipo)
+   ✓ Crédito "Designed by agenciados" en footer
+
+═══════════════════════════════════════════════════════════════════════
+  🆘 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════════════
+
+❌ PROBLEMA: El sitio no carga
+   ✓ Verifica que index.html esté en public_html (no en una subcarpeta)
+   ✓ Espera 5-10 minutos (DNS puede tardar)
+   ✓ Limpia el caché del navegador (Ctrl + F5)
+
+❌ PROBLEMA: Las imágenes no se ven
+   ✓ Verifica que la carpeta "images" esté en public_html
+   ✓ Verifica que la carpeta "_next" esté en public_html
+
+❌ PROBLEMA: El favicon no aparece
+   ✓ Verifica que favicon.ico esté en public_html
+   ✓ Limpia el caché del navegador (Ctrl + Shift + Delete)
+
+❌ PROBLEMA: Error 404
+   ✓ Asegúrate que el archivo se llama index.html (no Index.html)
+   ✓ Verifica que esté directamente en public_html
+
+═══════════════════════════════════════════════════════════════════════
+  📞 CONTACTOS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════
+
+Teléfono: +56932344214
+Email: contacto@outdoornuble.cl
+Facebook: facebook.com/share/1BUNJX6c1e
+Instagram: @extremosurexpediciones.cl
+
+═══════════════════════════════════════════════════════════════════════
+  🎉 ¡LISTO!
+═══════════════════════════════════════════════════════════════════════
+
+Tu sitio web profesional de Outdoor Ñuble está listo para recibir
+clientes y reservas de rafting en el Río Ñuble.
+
+Diseñado por agenciados
+www.agenciados.cl
+
+═══════════════════════════════════════════════════════════════════════
