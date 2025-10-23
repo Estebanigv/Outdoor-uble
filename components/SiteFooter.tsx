@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram } from "lucide-react";
 
 interface SiteFooterProps {
   contact: {
@@ -14,8 +14,8 @@ export default function SiteFooter({ contact }: SiteFooterProps) {
   return (
     <footer className="bg-grafito text-white relative overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-rio/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-bosque/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-rio/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-bosque/5 rounded-full blur-3xl -z-10"></div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
@@ -29,6 +29,31 @@ export default function SiteFooter({ contact }: SiteFooterProps) {
               Vive la aventura del rafting en el majestuoso Río Ñuble. Experiencias inolvidables en el corazón de la
               Región de Ñuble, Chile.
             </p>
+
+            {/* Social Media Links */}
+            <div className="mt-6 relative z-50">
+              <h4 className="font-display text-lg font-semibold mb-3">Síguenos</h4>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.facebook.com/share/1BUNJX6c1e/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-50 w-10 h-10 bg-white/10 hover:bg-[#1877F2] text-white rounded-full flex items-center justify-center border border-white/20 hover:border-[#1877F2] transition-all duration-300 hover:scale-110 cursor-pointer"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5 pointer-events-none" />
+                </a>
+                <a
+                  href="https://www.instagram.com/extremosurexpediciones.cl?igsh=amdjenA1YnFydzY0&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-50 w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] text-white rounded-full flex items-center justify-center border border-white/20 hover:border-transparent transition-all duration-300 hover:scale-110 cursor-pointer"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 pointer-events-none" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Contact Info */}
