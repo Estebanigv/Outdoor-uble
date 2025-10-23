@@ -1422,7 +1422,7 @@ export default function Home() {
                   className="bg-gradient-to-r from-rio to-bosque hover:from-rio/90 hover:to-bosque/90 text-white rounded-full px-10 py-5 sm:px-12 sm:py-6 md:px-16 md:py-8 text-lg sm:text-xl md:text-2xl font-bold shadow-2xl hover:scale-105 transition-all border-2 border-white/30"
                 >
                   <a href={getWhatsAppLink("+56932344214", "Hola! Quiero saber más sobre Outdoor Ñuble")} target="_blank" rel="noopener noreferrer">
-                    Conocer más
+                    Contáctanos
                   </a>
                 </Button>
               </div>
