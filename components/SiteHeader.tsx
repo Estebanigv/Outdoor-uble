@@ -23,9 +23,6 @@ export default function SiteHeader({ phone }: SiteHeaderProps) {
   }, []);
 
   const menuItems = [
-    { href: "/", label: "Rafting", isRoute: true },
-    { href: "/nosotros", label: "Nosotros", isRoute: true },
-    { href: "/contacto", label: "Contacto", isRoute: true },
     { href: "#experiencia", label: "Experiencia", isRoute: false },
     { href: "#galeria", label: "Galería", isRoute: false },
     { href: "#faq", label: "FAQ", isRoute: false },
