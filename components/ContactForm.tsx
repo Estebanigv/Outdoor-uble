@@ -27,7 +27,8 @@ export default function ContactForm() {
     setSubmitStatus("idle");
 
     try {
-      const response = await fetch("/api/contact", {
+      // Use PHP handler instead of Next.js API route
+      const response = await fetch("/send-email.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,8 +36,10 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error("Error al enviar el formulario");
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Error al enviar el formulario");
       }
 
       setSubmitStatus("success");
