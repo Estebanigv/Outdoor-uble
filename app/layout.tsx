@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Chivo, Work_Sans, Montserrat } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
 const chivo = Chivo({
@@ -27,37 +28,40 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://www.outdoornuble.cl"),
   title: {
-    default: "Outdoor Ñuble - Tu próxima aventura",
+    default: "Rafting Río Ñuble | Outdoor Ñuble - Turismo Aventura en San Fabián",
     template: "%s | Outdoor Ñuble",
   },
   description:
-    "Turismo aventura y naturaleza en San Fabián, Ñuble. Rafting y experiencias outdoor guiadas por locales certificados en la Reserva de la Biósfera declarada por la UNESCO.",
+    "Descubre el mejor rafting en el Río Ñuble, San Fabián de Alico. Turismo aventura con guías certificados en la Reserva de la Biósfera UNESCO. Reserva tu experiencia hoy.",
   keywords:
-    "rafting ñuble, turismo aventura san fabián, outdoor chile, río ñuble, rafting chile, reserva biosfera ñuble, turismo sustentable, aventura cordillera",
+    "rafting río ñuble, rafting san fabián, turismo aventura ñuble, outdoor chile, rafting chile, reserva biosfera ñuble, turismo sustentable chile, aventura cordillera, rafting profesional, guías certificados rafting",
   authors: [{ name: "Outdoor Ñuble" }],
   creator: "Outdoor Ñuble",
   publisher: "Outdoor Ñuble",
+  alternates: {
+    canonical: "https://www.outdoornuble.cl",
+  },
   openGraph: {
     type: "website",
     locale: "es_CL",
     url: "https://www.outdoornuble.cl",
     siteName: "Outdoor Ñuble",
-    title: "Outdoor Ñuble - Tu próxima aventura",
+    title: "Rafting Río Ñuble | Outdoor Ñuble - Turismo Aventura",
     description:
-      "Turismo aventura y naturaleza en San Fabián, Ñuble. Rafting y experiencias outdoor sustentables.",
+      "El mejor rafting en el Río Ñuble con guías certificados. Experiencias de turismo aventura en la Reserva de la Biósfera UNESCO, San Fabián de Alico.",
     images: [
       {
         url: "/og-outdoornuble.jpg",
         width: 1200,
         height: 630,
-        alt: "Outdoor Ñuble - Rafting y Turismo Aventura",
+        alt: "Outdoor Ñuble - Rafting profesional en Río Ñuble, San Fabián de Alico",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Outdoor Ñuble - Tu próxima aventura",
-    description: "Turismo aventura y naturaleza en San Fabián, Ñuble.",
+    title: "Rafting Río Ñuble | Outdoor Ñuble",
+    description: "El mejor rafting en el Río Ñuble. Turismo aventura con guías certificados en San Fabián.",
     images: ["/og-outdoornuble.jpg"],
   },
   robots: {
@@ -71,6 +75,21 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "tu-codigo-google-search-console",
+  },
+  other: {
+    "theme-color": "#0A84AE",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0A84AE",
 };
 
 export default function RootLayout({
@@ -80,6 +99,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className={`${workSans.variable} ${chivo.variable} ${montserrat.variable} font-sans antialiased`}>
         <GoogleAnalytics />
         {children}
