@@ -123,6 +123,17 @@ export default function SiteFooter({ contact }: SiteFooterProps) {
           <p className="text-white/60 text-sm">
             © {currentYear} Outdoor Ñuble. Todos los derechos reservados. Hecho con ❤️ en San Fabián de Alico.
           </p>
+          <p className="text-white/40 text-xs mt-2">
+            Designed by{" "}
+            <a
+              href="https://www.agenciados.cl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/50 transition-colors duration-300"
+            >
+              agenciados
+            </a>
+          </p>
         </div>
       </div>
     </footer>

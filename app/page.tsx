@@ -1526,6 +1526,18 @@ export default function Home() {
 
                 <div className="text-white/60 text-sm font-light">
                   © 2025 Outdoor Ñuble. Todos los derechos reservados.
+                  <span className="text-white/40 mx-2">·</span>
+                  <span className="text-white/40">
+                    Designed by{" "}
+                    <a
+                      href="https://www.agenciados.cl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white/50 transition-colors duration-300"
+                    >
+                      agenciados
+                    </a>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-5">
